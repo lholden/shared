@@ -167,3 +167,4 @@
 
 (global-set-key (kbd "C-o") 'vi-open-line-below)
 (global-set-key (kbd "C-S-o") 'vi-open-line-above)
+

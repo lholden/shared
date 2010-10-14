@@ -85,6 +85,12 @@
 (setq ring-bell-function (lambda () ))
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(defadvice kill-line (before check-position activate)
+      (if (and (eolp) (not (bolp)))
+          (progn (forward-char 1)
+                 (just-one-space 0)
+                 (backward-char 1))))
+
 ;; Methods
 (defun fake-stdin-slurp (filename)
   "Emulate stdin slurp using emacsclient hack"
@@ -143,23 +149,25 @@
 
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
-(global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-c y") 'bury-buffer)
-(global-set-key (kbd "C-c r") 'revert-buffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-(global-set-key (kbd "C-x m") 'eshell)
-(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
-(global-set-key (kbd "M-g s") 'magit-status)
+(define-key global-map (kbd "M-/") 'hippie-expand)
+(define-key global-map (kbd "C-c y") 'bury-buffer)
+(define-key global-map (kbd "C-c r") 'revert-buffer)
+(define-key global-map (kbd "C-x C-b") 'ibuffer)
+(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
+(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
+(define-key global-map (kbd "C-M-s") 'isearch-forward)
+(define-key global-map (kbd "C-M-r") 'isearch-backward)
+(define-key global-map (kbd "C-x m") 'eshell)
+(define-key global-map (kbd "C-x M") (lambda () (interactive) (eshell t)))
+(define-key global-map (kbd "M-g s") 'magit-status)
 
-(global-set-key (kbd "s-o") 'vi-open-line-below)
-(global-set-key (kbd "s-O") 'vi-open-line-above)
-(global-set-key (kbd "s-z") 'undo)
-(global-set-key (kbd "s-Z") 'redo)
-(global-set-key (kbd "s-b") 'icicle-buffer)
+(define-key global-map (kbd "s-o") 'vi-open-line-below)
+(define-key global-map (kbd "s-O") 'vi-open-line-above)
+(define-key global-map (kbd "s-z") 'undo)
+(define-key global-map (kbd "s-Z") 'redo)
+(define-key global-map (kbd "s-b") 'icicle-buffer)
+(define-key global-map (kbd "RET") 'newline-and-indent)
+(define-key global-map (kbd "C-j") 'newline)
 
 (defvar lori-minor-mode-map (make-keymap) "lori-minor-mode keymap.")
 (define-minor-mode lori-minor-mode

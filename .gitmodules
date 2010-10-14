@@ -10,3 +10,6 @@
 [submodule "emacs/dot_emacs.d/site-lisp/rhtml-mode"]
 	path = emacs/dot_emacs.d/site-lisp/rhtml-mode
 	url = http://github.com/eschulte/rhtml.git
+[submodule "emacs/dot_emacs.d/site-lisp/icicles"]
+	path = emacs/dot_emacs.d/site-lisp/icicles
+	url = http://github.com/emacsmirror/icicles.git

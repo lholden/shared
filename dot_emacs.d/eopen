@@ -1,0 +1,41 @@
+#!/bin/sh
+function open_emacs {
+  emacs_args="$@"
+  started_emacs="false"
+  while [ 1 ]; do
+    if [ $# -eq 0 ]; then
+      emacsclient -e '""' 2> /dev/null
+    else
+      emacsclient "$@" 2> /dev/null
+    fi
+    if [ $? -eq 0 ]; then
+      return $?
+    else
+      if [ "$started_emacs" == "false" ]; then
+        started_emacs="true"
+        open -a Emacs
+      fi
+      sleep 0.2
+    fi
+  done
+}
+
+if [ ! -t 0  ]; then
+  tempfoo=`basename $0`
+  tmp_file=`mktemp -q /tmp/${tempfoo}-stdio.XXXXXXXXXXXX`
+  if [ $? -ne 0 ]; then
+     echo "$0: Can't create temp file, exiting..."
+     exit 1
+  fi
+  cat > "${tmp_file}"
+  
+  open_emacs -e "(fake-stdin-slurp \"${tmp_file}\")" ${@}
+
+  if [ ${?} -ne 0 ]; then
+    echo "failed: your input was saved in '${tmp_file}'"
+  else
+    rm -f "${tmp_file}"
+  fi
+else
+   open_emacs -n "$@"
+fi

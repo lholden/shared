@@ -1,15 +1,21 @@
-[submodule "emacs/dot_emacs.d/site-lisp/magit"]
-	path = emacs/dot_emacs.d/site-lisp/magit
+[submodule "dot_emacs.d/site-lisp/magit"]
+	path = dot_emacs.d/site-lisp/magit
 	url = http://github.com/philjackson/magit.git
-[submodule "emacs/dot_emacs.d/site-lisp/rinari"]
-	path = emacs/dot_emacs.d/site-lisp/rinari
+[submodule "dot_emacs.d/site-lisp/rinari"]
+	path = dot_emacs.d/site-lisp/rinari
 	url = http://github.com/eschulte/rinari.git
-[submodule "emacs/dot_emacs.d/site-lisp/textmate"]
-	path = emacs/dot_emacs.d/site-lisp/textmate
+[submodule "dot_emacs.d/site-lisp/textmate"]
+	path = dot_emacs.d/site-lisp/textmate
 	url = http://github.com/defunkt/textmate.el.git
-[submodule "emacs/dot_emacs.d/site-lisp/rhtml-mode"]
-	path = emacs/dot_emacs.d/site-lisp/rhtml-mode
+[submodule "dot_emacs.d/site-lisp/rhtml-mode"]
+	path = dot_emacs.d/site-lisp/rhtml-mode
 	url = http://github.com/eschulte/rhtml.git
-[submodule "emacs/dot_emacs.d/site-lisp/icicles"]
-	path = emacs/dot_emacs.d/site-lisp/icicles
+[submodule "dot_emacs.d/site-lisp/icicles"]
+	path = dot_emacs.d/site-lisp/icicles
 	url = http://github.com/emacsmirror/icicles.git
+[submodule "dot_emacs.d/site-lisp/jump"]
+	path = dot_emacs.d/site-lisp/jump
+	url = http://github.com/eschulte/jump.el.git
+[submodule "dot_emacs.d/site-lisp/color-theme"]
+	path = dot_emacs.d/site-lisp/color-theme
+	url = http://github.com/haxney/color-theme.git

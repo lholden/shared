@@ -19,3 +19,6 @@
 [submodule "dot_emacs.d/site-lisp/color-theme"]
 	path = dot_emacs.d/site-lisp/color-theme
 	url = http://github.com/haxney/color-theme.git
+[submodule "dot_emacs.d/site-lisp/org-mode"]
+	path = dot_emacs.d/site-lisp/org-mode
+	url = git://repo.or.cz/org-mode.git

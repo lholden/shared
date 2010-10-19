@@ -184,16 +184,18 @@
                                      (interactive)
                                      (icicle-locate-file)))
 
-; search forward with Ctrl-f
+;; search forward with Ctrl-f/g
 (define-key global-map (kbd "s-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "s-f") (lookup-key isearch-mode-map (kbd "C-s")))
 (define-key minibuffer-local-isearch-map (kbd "s-f") (lookup-key minibuffer-local-isearch-map (kbd "C-s")))
+(define-key global-map (kbd "s-g") 'isearch-forward-regexp)
+(define-key isearch-mode-map (kbd "s-g") (lookup-key isearch-mode-map (kbd "C-s")))
+(define-key minibuffer-local-isearch-map (kbd "s-g") (lookup-key minibuffer-local-isearch-map (kbd "C-s")))
 
-; search backward with Alt-f
+;; search backward with Alt-f
 (global-set-key [(meta f)] 'isearch-backward)
 (define-key isearch-mode-map [(meta f)] (lookup-key isearch-mode-map "\C-r"))
-(define-key minibuffer-local-isearch-map [(meta f)]
-(lookup-key minibuffer-local-isearch-map "\C-r"))
+(define-key minibuffer-local-isearch-map [(meta f)] (lookup-key minibuffer-local-isearch-map "\C-r"))
 
 (let ((ret (lookup-key global-map (kbd "RET")))
       (c-j (lookup-key global-map (kbd "C-j"))))

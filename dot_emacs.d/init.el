@@ -156,6 +156,13 @@
     (end-of-line))
   (newline-and-indent))
 
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
 (define-key global-map (kbd "M-/") 'hippie-expand)
@@ -183,6 +190,7 @@
                                      (setq current-prefix-arg (list 1))
                                      (interactive)
                                      (icicle-locate-file)))
+(define-key global-map (kbd "s-r") 'icicle-bookmark-jump)
 
 ;; search forward with Ctrl-f/g
 (define-key global-map (kbd "s-f") 'isearch-forward-regexp)
@@ -197,9 +205,10 @@
 (define-key isearch-mode-map [(meta f)] (lookup-key isearch-mode-map "\C-r"))
 (define-key minibuffer-local-isearch-map [(meta f)] (lookup-key minibuffer-local-isearch-map "\C-r"))
 
-(let ((ret (lookup-key global-map (kbd "RET")))
-      (c-j (lookup-key global-map (kbd "C-j"))))
-  (define-key lori-minor-mode-map (kbd "RET") c-j)
-  (define-key lori-minor-mode-map (kbd "C-j") ret))
+(let ((c-j (lookup-key global-map (kbd "RET")))
+      (ret (lookup-key global-map (kbd "C-j"))))
+  (define-key lori-minor-mode-map (kbd "RET") ret)
+  (define-key lori-minor-mode-map (kbd "C-j") c-j)
+  (define-key global-map '[s-return] c-j))
 
 (icy-mode t)

@@ -79,11 +79,16 @@
 (require 'icicles)
 (setq icicle-buffers-ido-like-flag t)
 
+;; Org Mode
+(require 'org-install)
+
+
 ;; Customization
 (defalias 'open 'find-file)
 (defalias 'sh 'eshell)
 (setq ring-bell-function (lambda () ))
 (fset 'yes-or-no-p 'y-or-n-p)
+(global-font-lock-mode 1)
 
 (defadvice kill-line (before check-position activate)
       (if (and (eolp) (not (bolp)))
@@ -183,6 +188,15 @@
                                               (interactive)
                                               (icicle-locate-file)))
 
+;; Remove textmate-mode mappings I don't care for.
+(define-key *textmate-mode-map* [(super meta return)] nil)
+(define-key *textmate-mode-map* [(super meta \])] nil)
+(define-key *textmate-mode-map* [(super meta \[)] nil)
+(define-key *textmate-mode-map* [(super t)] nil)
+(define-key *textmate-mode-map* [(meta up)] nil)
+(define-key *textmate-mode-map* [(meta down)] nil)
+(define-key *textmate-mode-map* [(meta shift up)] nil)
+(define-key *textmate-mode-map* [(meta shift down)] nil)
 
 (add-hook 'minibuffer-setup-hook (lambda() (lori-minor-mode 0)))
 (lori-minor-mode 1)

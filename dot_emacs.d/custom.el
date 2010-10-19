@@ -4,11 +4,13 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
+ '(c-basic-offset 2)
  '(default-frame-alist (quote ((tool-bar-lines . 0) (menu-bar-lines . 1) (background-color . "#000000") (foreground-color . "#FFFFFF") (cursor-color . "#DAD085") (width . 120) (height . 60))))
  '(delete-selection-mode t)
  '(eshell-scroll-to-bottom-on-output (quote all))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(make-backup-files nil)
  '(mouse-drag-copy-region nil)
  '(mouse-wheel-scroll-amount (quote (1)))

@@ -4,9 +4,6 @@
 [submodule "dot_emacs.d/site-lisp/rinari"]
 	path = dot_emacs.d/site-lisp/rinari
 	url = http://github.com/eschulte/rinari.git
-[submodule "dot_emacs.d/site-lisp/textmate"]
-	path = dot_emacs.d/site-lisp/textmate
-	url = http://github.com/defunkt/textmate.el.git
 [submodule "dot_emacs.d/site-lisp/rhtml-mode"]
 	path = dot_emacs.d/site-lisp/rhtml-mode
 	url = http://github.com/eschulte/rhtml.git

@@ -61,10 +61,6 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
-;; TextMate Mode
-(require 'textmate)
-(textmate-mode)
-
 ;; eshell
 (defun eshell/emacs (file)
   (find-file file))
@@ -82,6 +78,14 @@
 ;; Org Mode
 (require 'org-install)
 
+;; Lori Mode
+(defvar lori-minor-mode-map (make-keymap) "lori-minor-mode keymap.")
+(define-minor-mode lori-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  t " lori" 'lori-minor-mode-map)
+
+(add-hook 'minibuffer-setup-hook (lambda() (lori-minor-mode 0)))
+(lori-minor-mode 1)
 
 ;; Customization
 (defalias 'open 'find-file)
@@ -158,8 +162,6 @@
 (define-key global-map (kbd "C-c y") 'bury-buffer)
 (define-key global-map (kbd "C-c r") 'revert-buffer)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
-(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
-(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
 (define-key global-map (kbd "C-M-s") 'isearch-forward)
 (define-key global-map (kbd "C-M-r") 'isearch-backward)
 (define-key global-map (kbd "C-x m") 'eshell)
@@ -171,33 +173,31 @@
 (define-key global-map (kbd "s-z") 'undo)
 (define-key global-map (kbd "s-Z") 'redo)
 (define-key global-map (kbd "s-b") 'icicle-buffer)
-(define-key global-map (kbd "RET") 'newline-and-indent)
-(define-key global-map (kbd "C-j") 'newline)
 
-(defvar lori-minor-mode-map (make-keymap) "lori-minor-mode keymap.")
-(define-minor-mode lori-minor-mode
-  "A minor mode so that my key settings override annoying major modes."
-  t " lori" 'lori-minor-mode-map)
+(define-key global-map '[C-s-up] 'move-text-up)
+(define-key global-map '[C-s-down] 'move-text-down) 
 
-(define-key lori-minor-mode-map '[s-left] 'beginning-of-line)
-(define-key lori-minor-mode-map '[s-right] 'end-of-line) 
-(define-key lori-minor-mode-map '[C-s-up] 'move-text-up)
-(define-key lori-minor-mode-map '[C-s-down] 'move-text-down) 
-(define-key lori-minor-mode-map (kbd "s-t") (lambda() 
-                                              (setq current-prefix-arg (list 1))
-                                              (interactive)
-                                              (icicle-locate-file)))
+(define-key global-map '[s-left] 'beginning-of-line)
+(define-key global-map '[s-right] 'end-of-line) 
+(define-key global-map (kbd "s-t") (lambda() 
+                                     (setq current-prefix-arg (list 1))
+                                     (interactive)
+                                     (icicle-locate-file)))
 
-;; Remove textmate-mode mappings I don't care for.
-(define-key *textmate-mode-map* [(super meta return)] nil)
-(define-key *textmate-mode-map* [(super meta \])] nil)
-(define-key *textmate-mode-map* [(super meta \[)] nil)
-(define-key *textmate-mode-map* [(super t)] nil)
-(define-key *textmate-mode-map* [(meta up)] nil)
-(define-key *textmate-mode-map* [(meta down)] nil)
-(define-key *textmate-mode-map* [(meta shift up)] nil)
-(define-key *textmate-mode-map* [(meta shift down)] nil)
+; search forward with Ctrl-f
+(define-key global-map (kbd "s-f") 'isearch-forward-regexp)
+(define-key isearch-mode-map (kbd "s-f") (lookup-key isearch-mode-map (kbd "C-s")))
+(define-key minibuffer-local-isearch-map (kbd "s-f") (lookup-key minibuffer-local-isearch-map (kbd "C-s")))
 
-(add-hook 'minibuffer-setup-hook (lambda() (lori-minor-mode 0)))
-(lori-minor-mode 1)
+; search backward with Alt-f
+(global-set-key [(meta f)] 'isearch-backward)
+(define-key isearch-mode-map [(meta f)] (lookup-key isearch-mode-map "\C-r"))
+(define-key minibuffer-local-isearch-map [(meta f)]
+(lookup-key minibuffer-local-isearch-map "\C-r"))
+
+(let ((ret (lookup-key global-map (kbd "RET")))
+      (c-j (lookup-key global-map (kbd "C-j"))))
+  (define-key lori-minor-mode-map (kbd "RET") c-j)
+  (define-key lori-minor-mode-map (kbd "C-j") ret))
+
 (icy-mode t)

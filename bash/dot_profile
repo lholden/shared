@@ -1,0 +1,10 @@
+export CLICOLOR=1
+export SBCL_HOME=$HOME/.local/lib/sbcl
+export PATH=/usr/local/mysql/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+
+[[ -s $HOME/.prompt ]] && source $HOME/.prompt
+[[ -s $HOME/.alias ]] && source $HOME/.alias
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+[[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+

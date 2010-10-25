@@ -4,11 +4,11 @@
       inferior-lisp-program (expand-file-name "~/.local/bin/sbcl")
       slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
-;; Startup server so emacsclient can connect
-(server-start)
-
 ;; Load emacs settings
 (load custom-file)
+
+;; Startup server so emacsclient can connect
+(server-start)
 
 (setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
 (setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
@@ -26,12 +26,12 @@
 (require 'redo)
 (require 'icomplete)
 (require 'icomplete+)
+(require 'icicles)
 
 ;; CUA
 (cua-mode t)
-(setq cua-auto-tabify-rectangles nil)
 (transient-mark-mode 1)
-(setq cua-keep-region-after-copy t)
+(cua-selection-mode t)
 
 ;; Autopair
 (require 'autopair)
@@ -70,10 +70,6 @@
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)))
-
-;; Icicles
-(require 'icicles)
-(setq icicle-buffers-ido-like-flag t)
 
 ;; Org Mode
 (require 'org-install)
@@ -163,6 +159,15 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+(defun smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line."
+  (interactive)
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
+(put 'smart-beginning-of-line 'CUA 'move)
+
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
 (define-key global-map (kbd "M-/") 'hippie-expand)
@@ -184,8 +189,11 @@
 (define-key global-map '[C-s-up] 'move-text-up)
 (define-key global-map '[C-s-down] 'move-text-down) 
 
-(define-key global-map '[s-left] 'beginning-of-line)
-(define-key global-map '[s-right] 'end-of-line) 
+(define-key global-map '[s-left] 'smart-beginning-of-line)
+(define-key global-map '[s-right] 'end-of-line)
+(define-key global-map '[home] 'smart-beginning-of-line)
+(define-key global-map '[end] 'end-of-line)
+
 (define-key global-map (kbd "s-t") (lambda() 
                                      (setq current-prefix-arg (list 1))
                                      (interactive)
@@ -205,6 +213,7 @@
 (define-key isearch-mode-map [(meta f)] (lookup-key isearch-mode-map "\C-r"))
 (define-key minibuffer-local-isearch-map [(meta f)] (lookup-key minibuffer-local-isearch-map "\C-r"))
 
+;; swap return and control-j
 (let ((c-j (lookup-key global-map (kbd "RET")))
       (ret (lookup-key global-map (kbd "C-j"))))
   (define-key lori-minor-mode-map (kbd "RET") ret)

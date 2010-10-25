@@ -200,6 +200,8 @@
                                      (icicle-locate-file)))
 (define-key global-map (kbd "s-r") 'icicle-bookmark-jump)
 
+(define-key global-map '[mouse-3] 'mouse-popup-menubar-stuff)
+
 ;; search forward with Ctrl-f/g
 (define-key global-map (kbd "s-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "s-f") (lookup-key isearch-mode-map (kbd "C-s")))

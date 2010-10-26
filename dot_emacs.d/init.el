@@ -1,6 +1,8 @@
 (setq ls-lisp-dirs-firest t
-      custom-file (expand-file-name "~/.emacs.d/custom.el")
-      slime-helper (expand-file-name "~/.quicklisp/slime-helper.el")
+      custom-file (concat user-emacs-directory "custom.el")
+      site-lisp (concat user-emacs-directory "site-lisp")
+      compiled-lisp (concat user-emacs-directory "compiled-lisp")
+      slime-helper (expand-file-name "~/.quicklisp/slime-helper.elc")
       inferior-lisp-program (expand-file-name "~/.local/bin/sbcl")
       slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
@@ -14,9 +16,18 @@
 (setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
 
 ;; Add site-lisp and its subdirs to the load-path
-(let ((default-directory (concat user-emacs-directory "site-lisp")))
+(let ((default-directory site-lisp))
   (add-to-list 'load-path default-directory)
   (normal-top-level-add-subdirs-to-load-path))
+
+;; Add cached-lisp and its subdirs to the load-path
+(let ((default-directory compiled-lisp))
+  (add-to-list 'load-path default-directory)
+  (normal-top-level-add-subdirs-to-load-path))
+
+;; Caching
+(require 'elisp-cache)
+(elisp-cache site-lisp compiled-lisp)
 
 ;; Requires
 (require 'uniquify)

@@ -1,5 +1,5 @@
 #name : if ... else ... end
-#group : control structure
+#group : Conditions
 # --
 if ${1:condition}
   $2

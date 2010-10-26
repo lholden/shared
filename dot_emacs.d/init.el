@@ -31,13 +31,15 @@
 
 ;; Requires
 (require 'uniquify)
+(require 'ansi-color)
+(require 'mode-compile)
 (require 'magit)
 (require 'rinari)
-(require 'ansi-color)
 (require 'redo+)
 (require 'icomplete)
 (require 'icomplete+)
 (require 'icicles)
+(require 'rspec-mode)
 
 ;; EProject
 (require 'eproject)

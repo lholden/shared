@@ -22,3 +22,6 @@
 [submodule "dot_emacs.d/site-lisp/eproject"]
 	path = dot_emacs.d/site-lisp/eproject
 	url = http://github.com/jrockway/eproject.git
+[submodule "dot_emacs.d/site-lisp/rspec-mode"]
+	path = dot_emacs.d/site-lisp/rspec-mode
+	url = http://github.com/pezra/rspec-mode.git

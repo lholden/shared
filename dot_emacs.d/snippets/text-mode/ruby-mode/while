@@ -1,5 +1,5 @@
 #name : while ... end
-#group : control structure
+#group : Loops
 # --
 while ${condition}
   $0

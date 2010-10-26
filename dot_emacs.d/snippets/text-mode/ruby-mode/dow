@@ -1,6 +1,4 @@
-#name : downto(...) { |n| ... }
-#group : control structure
+# This was cloned from a TextMate bundle for yasnippet.
+#group : Loops
 # --
-downto(${0}) { |${n}|
-  $0
-}
+downto(${1:0}) { ${2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:|)/}${2:n}${2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:| )/}$0 }

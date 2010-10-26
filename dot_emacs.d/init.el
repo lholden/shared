@@ -85,9 +85,14 @@
 
 ;; Auto Complete
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
 (require 'auto-complete-config)
 (ac-config-default)
+
+;; YASnippet
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory (concat user-emacs-directory "snippets"))
 
 ;; Lori Mode
 (defvar lori-minor-mode-map (make-keymap) "lori-minor-mode keymap.")
@@ -237,7 +242,7 @@
 
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
-(define-key global-map (kbd "C-<tab>") 'hippie-expand)
+(define-key global-map (kbd "M-/") 'hippie-expand)
 (define-key global-map (kbd "M-g s") 'magit-status)
 
 (define-key global-map (kbd "C-s-<up>") 'move-text-up)
@@ -290,3 +295,4 @@
 
 ;; icy-mode comes last so that it can get an understanding of the key maps.
 (icy-mode t)
+

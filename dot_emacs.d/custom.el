@@ -33,7 +33,8 @@
  '(show-paren-mode t)
  '(standard-indent 2)
  '(tab-width 2)
- '(visible-cursor nil))
+ '(visible-cursor nil)
+ '(yas/trigger-key "<M-tab>"))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

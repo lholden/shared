@@ -4,11 +4,11 @@
       inferior-lisp-program (expand-file-name "~/.local/bin/sbcl")
       slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
 
-;; Startup server so emacsclient can connect
-(server-start)
-
 ;; Load emacs settings
 (load custom-file)
+
+;; Startup server so emacsclient can connect
+(server-start)
 
 (setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
 (setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
@@ -26,12 +26,12 @@
 (require 'redo)
 (require 'icomplete)
 (require 'icomplete+)
+(require 'icicles)
 
 ;; CUA
 (cua-mode t)
-(setq cua-auto-tabify-rectangles nil)
 (transient-mark-mode 1)
-(setq cua-keep-region-after-copy t)
+(cua-selection-mode t)
 
 ;; Autopair
 (require 'autopair)
@@ -71,10 +71,6 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
-;; Icicles
-(require 'icicles)
-(setq icicle-buffers-ido-like-flag t)
-
 ;; Org Mode
 (require 'org-install)
 
@@ -90,7 +86,7 @@
 ;; Customization
 (defalias 'open 'find-file)
 (defalias 'sh 'eshell)
-(setq ring-bell-function (lambda () ))
+(setq ring-bell-function 'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
 
@@ -171,54 +167,60 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(defmacro allow-line-as-region-for-function (orig-function)
-`(defun ,(intern (concat (symbol-name orig-function) "-or-line"))
-   ()
-   ,(format "Like `%s', but acts on the current line if mark is not active."
-            orig-function)
+(defun comment-or-uncomment-region-or-line ()
+   "Like comment-or-uncomment-region but acts on the current line if mark is not active."
    (interactive)
    (if mark-active
-       (call-interactively (function ,orig-function))
+       (call-interactively (function comment-or-uncomment-region))
      (save-excursion
        ;; define a region (temporarily) -- so any C-u prefixes etc. are preserved.
        (beginning-of-line)
        (set-mark (point))
        (end-of-line)
-       (call-interactively (function ,orig-function))))))
+       (call-interactively (function comment-or-uncomment-region)))))
 
-(unless (fboundp 'comment-or-uncomment-region-or-line)
-  (allow-line-as-region-for-function comment-or-uncomment-region))
+(defun smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line."
+  (interactive)
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
+(put 'smart-beginning-of-line 'CUA 'move)
 
+(defun locate-file-under-dir() 
+  "Locate a file under the specified directory"
+  (setq current-prefix-arg (list 1))
+  (interactive)
+  (icicle-locate-file))
 
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
 (define-key global-map (kbd "M-/") 'hippie-expand)
-(define-key global-map (kbd "C-c y") 'bury-buffer)
+(define-key global-map (kbd "M-g s") 'magit-status)
+
+(define-key global-map (kbd "C-s-<up>") 'move-text-up)
+(define-key global-map (kbd "C-s-<down>") 'move-text-down)
 (define-key global-map (kbd "C-c r") 'revert-buffer)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
-(define-key global-map (kbd "C-M-s") 'isearch-forward)
-(define-key global-map (kbd "C-M-r") 'isearch-backward)
 (define-key global-map (kbd "C-x m") 'eshell)
 (define-key global-map (kbd "C-x M") (lambda () (interactive) (eshell t)))
-(define-key global-map (kbd "M-g s") 'magit-status)
 
 (define-key global-map (kbd "s-o") 'vi-open-line-below)
 (define-key global-map (kbd "s-O") 'vi-open-line-above)
 (define-key global-map (kbd "s-z") 'undo)
 (define-key global-map (kbd "s-Z") 'redo)
 (define-key global-map (kbd "s-b") 'icicle-buffer)
-
-(define-key global-map '[C-s-up] 'move-text-up)
-(define-key global-map '[C-s-down] 'move-text-down) 
-
-(define-key global-map '[s-left] 'beginning-of-line)
-(define-key global-map '[s-right] 'end-of-line) 
-(define-key global-map (kbd "s-t") (lambda() 
-                                     (setq current-prefix-arg (list 1))
-                                     (interactive)
-                                     (icicle-locate-file)))
+(define-key global-map (kbd "s-t") 'locate-file-under-dir)
 (define-key global-map (kbd "s-r") 'icicle-bookmark-jump)
 (define-key global-map (kbd "s-/") 'comment-or-uncomment-region-or-line)
+
+(define-key global-map (kbd "s-<left>") 'smart-beginning-of-line)
+(define-key global-map (kbd "s-<right>") 'end-of-line)
+(define-key global-map (kbd "<home>") 'smart-beginning-of-line)
+(define-key global-map (kbd "<end>") 'end-of-line)
+
+(define-key global-map (kbd "<mouse-3>") 'mouse-popup-menubar-stuff)
 
 ;; search forward with Ctrl-f/g
 (define-key global-map (kbd "s-f") 'isearch-forward-regexp)
@@ -229,14 +231,16 @@
 (define-key minibuffer-local-isearch-map (kbd "s-g") (lookup-key minibuffer-local-isearch-map (kbd "C-s")))
 
 ;; search backward with Alt-f
-(global-set-key [(meta f)] 'isearch-backward)
-(define-key isearch-mode-map [(meta f)] (lookup-key isearch-mode-map "\C-r"))
-(define-key minibuffer-local-isearch-map [(meta f)] (lookup-key minibuffer-local-isearch-map "\C-r"))
+(global-set-key (kbd "M-f") 'isearch-backward)
+(define-key isearch-mode-map (kbd "M-f") (lookup-key isearch-mode-map (kbd "\C-r")))
+(define-key minibuffer-local-isearch-map (kbd "M-f") (lookup-key minibuffer-local-isearch-map (kbd "C-r")))
 
+;; swap return and control-j
 (let ((c-j (lookup-key global-map (kbd "RET")))
       (ret (lookup-key global-map (kbd "C-j"))))
   (define-key lori-minor-mode-map (kbd "RET") ret)
   (define-key lori-minor-mode-map (kbd "C-j") c-j)
-  (define-key global-map '[s-return] c-j))
+  (define-key global-map (kbd "s-<return>") c-j))
 
+;; icy-mode comes last so that it can get an understanding of the key maps.
 (icy-mode t)

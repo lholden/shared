@@ -13,6 +13,8 @@
 (server-start)
 
 (setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name "~/.rvm/bin") path-separator (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name (concat user-emacs-directory "bin")) path-separator (getenv "PATH")))
 (setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
 
 ;; Add site-lisp and its subdirs to the load-path
@@ -30,6 +32,7 @@
 (elisp-cache site-lisp compiled-lisp)
 
 ;; Requires
+(require 'rvm)
 (require 'uniquify)
 (require 'ansi-color)
 (require 'mode-compile)

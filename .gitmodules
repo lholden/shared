@@ -25,3 +25,6 @@
 [submodule "dot_emacs.d/site-lisp/rspec-mode"]
 	path = dot_emacs.d/site-lisp/rspec-mode
 	url = http://github.com/pezra/rspec-mode.git
+[submodule "dot_emacs.d/site-lisp/rvm"]
+	path = dot_emacs.d/site-lisp/rvm
+	url = http://github.com/senny/rvm.el.git

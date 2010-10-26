@@ -39,6 +39,10 @@
 (require 'icomplete+)
 (require 'icicles)
 
+;; EProject
+(require 'eproject)
+(require 'eproject-extras)
+
 ;; WLOR
 (require 'whole-line-or-region)
 (whole-line-or-region-mode t)
@@ -209,6 +213,12 @@
   (interactive)
   (icicle-locate-file))
 
+(defun locate-file-under-project()
+  "Locate a file under the specified project"
+  (interactive)
+  (cd eproject-root)
+  (icicle-locate-file))
+
 (defun rename-file-and-buffer ()
   "Renames current buffer and file it is visiting."
   (interactive)
@@ -242,7 +252,7 @@
 (define-key global-map (kbd "s-Z") 'redo)
 (define-key global-map (kbd "s-b") 'icicle-buffer)
 (define-key global-map (kbd "s-r") 'revert-buffer)
-(define-key global-map (kbd "s-t") 'locate-file-under-dir)
+(define-key global-map (kbd "s-t") 'locate-file-under-project)
 (define-key global-map (kbd "s-e") 'icicle-bookmark-jump)
 (define-key global-map (kbd "s-/") 'comment-or-uncomment-line-or-region)
 (define-key global-map (kbd "s-y") 'icicle-completing-yank)

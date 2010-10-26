@@ -19,3 +19,6 @@
 [submodule "dot_emacs.d/site-lisp/org-mode"]
 	path = dot_emacs.d/site-lisp/org-mode
 	url = git://repo.or.cz/org-mode.git
+[submodule "dot_emacs.d/site-lisp/eproject"]
+	path = dot_emacs.d/site-lisp/eproject
+	url = http://github.com/jrockway/eproject.git

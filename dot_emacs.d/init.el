@@ -28,6 +28,10 @@
 (require 'icomplete+)
 (require 'icicles)
 
+;; WLOR
+(require 'whole-line-or-region)
+(whole-line-or-region-mode t)
+
 ;; CUA
 (cua-mode t)
 (transient-mark-mode 1)
@@ -61,16 +65,6 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
-;; eshell
-(defun eshell/emacs (file)
-  (find-file file))
-(defun eshell/open (file)
-  (find-file file))
-(defun eshell/clear ()
-  (interactive)
-  (let ((inhibit-read-only t))
-    (erase-buffer)))
-
 ;; Org Mode
 (require 'org-install)
 
@@ -84,11 +78,22 @@
 (lori-minor-mode 1)
 
 ;; Customization
-(defalias 'open 'find-file)
-(defalias 'sh 'eshell)
 (setq ring-bell-function 'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
+(msb-mode t)
+
+(defun eshell/emacs (file)
+  (find-file file))
+(defun eshell/open (file)
+  (find-file file))
+(defun eshell/clear ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
+
+(defalias 'open 'find-file)
+(defalias 'sh 'eshell)
 
 (defadvice kill-line (before check-position activate)
       (if (and (eolp) (not (bolp)))
@@ -167,17 +172,10 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(defun comment-or-uncomment-region-or-line ()
-   "Like comment-or-uncomment-region but acts on the current line if mark is not active."
-   (interactive)
-   (if mark-active
-       (call-interactively (function comment-or-uncomment-region))
-     (save-excursion
-       ;; define a region (temporarily) -- so any C-u prefixes etc. are preserved.
-       (beginning-of-line)
-       (set-mark (point))
-       (end-of-line)
-       (call-interactively (function comment-or-uncomment-region)))))
+(defun comment-or-uncomment-line-or-region (prefix)
+  "Similar to comment-or-uncomment-region but also acts on the whole line if no mark is active."
+  (interactive "*p")
+  (whole-line-or-region-call-with-region 'comment-or-uncomment-region prefix t))
 
 (defun smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line."
@@ -194,33 +192,54 @@
   (interactive)
   (icicle-locate-file))
 
+(defun rename-file-and-buffer ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (message "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (cond ((get-buffer new-name)
+               (message "A buffer named '%s' already exists!" new-name))
+              (t
+               (rename-file filename new-name 1)
+               (rename-buffer new-name)
+               (set-visited-file-name new-name)
+               (set-buffer-modified-p nil)))))))
+
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
-(define-key global-map (kbd "M-/") 'hippie-expand)
+(define-key global-map (kbd "C-<tab>") 'hippie-expand)
 (define-key global-map (kbd "M-g s") 'magit-status)
 
 (define-key global-map (kbd "C-s-<up>") 'move-text-up)
 (define-key global-map (kbd "C-s-<down>") 'move-text-down)
-(define-key global-map (kbd "C-c r") 'revert-buffer)
+(define-key global-map (kbd "C-c r") 'rename-file-and-buffer)
+(define-key global-map (kbd "C-c s") 'eshell)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
-(define-key global-map (kbd "C-x m") 'eshell)
-(define-key global-map (kbd "C-x M") (lambda () (interactive) (eshell t)))
 
 (define-key global-map (kbd "s-o") 'vi-open-line-below)
 (define-key global-map (kbd "s-O") 'vi-open-line-above)
 (define-key global-map (kbd "s-z") 'undo)
 (define-key global-map (kbd "s-Z") 'redo)
 (define-key global-map (kbd "s-b") 'icicle-buffer)
+(define-key global-map (kbd "s-r") 'revert-buffer)
 (define-key global-map (kbd "s-t") 'locate-file-under-dir)
-(define-key global-map (kbd "s-r") 'icicle-bookmark-jump)
-(define-key global-map (kbd "s-/") 'comment-or-uncomment-region-or-line)
+(define-key global-map (kbd "s-e") 'icicle-bookmark-jump)
+(define-key global-map (kbd "s-/") 'comment-or-uncomment-line-or-region)
+(define-key global-map (kbd "s-y") 'icicle-completing-yank)
+(define-key global-map (kbd "s-j") 'secondary-to-primary)
 
 (define-key global-map (kbd "s-<left>") 'smart-beginning-of-line)
 (define-key global-map (kbd "s-<right>") 'end-of-line)
 (define-key global-map (kbd "<home>") 'smart-beginning-of-line)
 (define-key global-map (kbd "<end>") 'end-of-line)
 
-(define-key global-map (kbd "<mouse-3>") 'mouse-popup-menubar-stuff)
+(define-key global-map (kbd "<S-down-mouse-1>") 'ignore)
+(define-key global-map (kbd "<S-mouse-1>") 'mouse-set-point)
+(put 'mouse-set-point 'CUA 'move)
+(define-key global-map (kbd "<mouse-3>") (lookup-key global-map (kbd "C-<down-mouse-3>")))
 
 ;; search forward with Ctrl-f/g
 (define-key global-map (kbd "s-f") 'isearch-forward-regexp)

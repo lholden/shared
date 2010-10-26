@@ -20,6 +20,7 @@
  '(mouse-drag-copy-region nil)
  '(mouse-wheel-scroll-amount (quote (1)))
  '(normal-erase-is-backspace t)
+ '(safe-local-variable-values (quote ((encoding . utf-8) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby"))))
  '(scroll-conservatively 1)
  '(scroll-preserve-screen-position 1)
  '(show-paren-mode t)

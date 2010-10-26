@@ -100,6 +100,14 @@
                  (just-one-space 0)
                  (backward-char 1))))
 
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
+
 ;; Methods
 (defun fake-stdin-slurp (filename)
   "Emulate stdin slurp using emacsclient hack"
@@ -163,6 +171,25 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+(defmacro allow-line-as-region-for-function (orig-function)
+`(defun ,(intern (concat (symbol-name orig-function) "-or-line"))
+   ()
+   ,(format "Like `%s', but acts on the current line if mark is not active."
+            orig-function)
+   (interactive)
+   (if mark-active
+       (call-interactively (function ,orig-function))
+     (save-excursion
+       ;; define a region (temporarily) -- so any C-u prefixes etc. are preserved.
+       (beginning-of-line)
+       (set-mark (point))
+       (end-of-line)
+       (call-interactively (function ,orig-function))))))
+
+(unless (fboundp 'comment-or-uncomment-region-or-line)
+  (allow-line-as-region-for-function comment-or-uncomment-region))
+
+
 ;; Key bindings
 (windmove-default-keybindings 'control) ;; meta+direction
 (define-key global-map (kbd "M-/") 'hippie-expand)
@@ -191,6 +218,7 @@
                                      (interactive)
                                      (icicle-locate-file)))
 (define-key global-map (kbd "s-r") 'icicle-bookmark-jump)
+(define-key global-map (kbd "s-/") 'comment-or-uncomment-region-or-line)
 
 ;; search forward with Ctrl-f/g
 (define-key global-map (kbd "s-f") 'isearch-forward-regexp)

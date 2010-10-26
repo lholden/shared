@@ -23,7 +23,7 @@
 (require 'magit)
 (require 'rinari)
 (require 'ansi-color)
-(require 'redo)
+(require 'redo+)
 (require 'icomplete)
 (require 'icomplete+)
 (require 'icicles)

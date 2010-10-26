@@ -68,6 +68,12 @@
 ;; Org Mode
 (require 'org-install)
 
+;; Auto Complete
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(require 'auto-complete-config)
+(ac-config-default)
+
 ;; Lori Mode
 (defvar lori-minor-mode-map (make-keymap) "lori-minor-mode keymap.")
 (define-minor-mode lori-minor-mode

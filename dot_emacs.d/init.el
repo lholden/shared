@@ -12,14 +12,6 @@
 ;; Startup server so emacsclient can connect
 (server-start)
 
-(setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
-(setenv "PATH" (concat (expand-file-name "~/.rvm/bin") path-separator (getenv "PATH")))
-(setenv "PATH" (concat (expand-file-name (concat user-emacs-directory "bin")) path-separator (getenv "PATH")))
-(let ((env-path (split-string (getenv "PATH") path-separator)))
-  (setq exec-path (union exec-path env-path :test 'equal)))
-
-(setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
-
 ;; Add site-lisp and its subdirs to the load-path
 (let ((default-directory site-lisp))
   (add-to-list 'load-path default-directory)
@@ -34,10 +26,22 @@
 (require 'elisp-cache)
 (elisp-cache site-lisp compiled-lisp)
 
-;; Requires
-(require 'rvm)
-(require 'uniquify)
+;; Base Requires
+(require 'cl)
 (require 'ansi-color)
+(require 'uniquify)
+
+;; Environment
+(setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name "~/.rvm/bin") path-separator (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name (concat user-emacs-directory "bin")) path-separator (getenv "PATH")))
+(let ((env-path (split-string (getenv "PATH") path-separator)))
+  (setq exec-path (union exec-path env-path :test 'equal)))
+
+(setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
+
+;; Package Requires
+(require 'rvm)
 (require 'mode-compile)
 (require 'magit)
 (require 'rinari)
@@ -129,11 +133,27 @@
 (defalias 'open 'find-file)
 (defalias 'sh 'eshell)
 
+(defadvice autopair-newline (after args activate)
+  "Automatically indent after a autopair-newline"
+  (indent-according-to-mode))
+
 (defadvice kill-line (before check-position activate)
+  "Consume indentation when at the end of the line"
       (if (and (eolp) (not (bolp)))
           (progn (forward-char 1)
                  (just-one-space 0)
                  (backward-char 1))))
+
+(dolist (command '(yank yank-pop))
+       (eval `(defadvice ,command (after indent-region activate)
+                "Automatically indent yanked code"
+                (and (not current-prefix-arg)
+                     (member major-mode '(emacs-lisp-mode lisp-mode clojure-mode    scheme-mode
+                                          haskell-mode    ruby-mode rspec-mode      python-mode
+                                          c-mode          c++-mode  objc-mode       latex-mode
+                                          plain-tex-mode  js-mode))
+                     (let ((mark-even-if-inactive transient-mark-mode))
+                       (indent-region (region-beginning) (region-end) nil))))))
 
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
@@ -265,13 +285,15 @@
 (define-key global-map (kbd "s-e") 'icicle-bookmark-jump)
 (define-key global-map (kbd "s-/") 'comment-dwim-line-or-region)
 (define-key global-map (kbd "s-y") 'icicle-completing-yank)
-(define-key global-map (kbd "s-j") 'secondary-to-primary)
+(define-key global-map (kbd "s-j") 'whole-line-or-region-delete)
+(define-key global-map (kbd "s-<return>") 'newline)
 
 (define-key global-map (kbd "s-<left>") 'smart-beginning-of-line)
 (define-key global-map (kbd "s-<right>") 'end-of-line)
 (define-key global-map (kbd "<home>") 'smart-beginning-of-line)
 (define-key global-map (kbd "<end>") 'end-of-line)
 
+;; make selecting with the mouse smoother without full cua mode
 (define-key global-map (kbd "<S-down-mouse-1>") 'ignore)
 (define-key global-map (kbd "<S-mouse-1>") 'mouse-set-point)
 (put 'mouse-set-point 'CUA 'move)
@@ -290,13 +312,5 @@
 (define-key isearch-mode-map (kbd "M-f") (lookup-key isearch-mode-map (kbd "\C-r")))
 (define-key minibuffer-local-isearch-map (kbd "M-f") (lookup-key minibuffer-local-isearch-map (kbd "C-r")))
 
-;; swap return and control-j
-(let ((c-j (lookup-key global-map (kbd "RET")))
-      (ret (lookup-key global-map (kbd "C-j"))))
-  (define-key lori-minor-mode-map (kbd "RET") ret)
-  (define-key lori-minor-mode-map (kbd "C-j") c-j)
-  (define-key global-map (kbd "s-<return>") c-j))
-
-;; icy-mode comes last so that it can get an understanding of the key maps.
+;; Icy-mode comes last so that it can get an understanding of the key maps.
 (icy-mode t)
-

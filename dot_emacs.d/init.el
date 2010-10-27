@@ -15,6 +15,9 @@
 (setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
 (setenv "PATH" (concat (expand-file-name "~/.rvm/bin") path-separator (getenv "PATH")))
 (setenv "PATH" (concat (expand-file-name (concat user-emacs-directory "bin")) path-separator (getenv "PATH")))
+(let ((env-path (split-string (getenv "PATH") path-separator)))
+  (setq exec-path (union exec-path env-path :test 'equal)))
+
 (setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
 
 ;; Add site-lisp and its subdirs to the load-path
@@ -203,10 +206,10 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(defun comment-or-uncomment-line-or-region (prefix)
-  "Similar to comment-or-uncomment-region but also acts on the whole line if no mark is active."
+(defun comment-dwim-line-or-region (prefix)
+  "Similar to comment-dwim but also acts on the whole line if no mark is active."
   (interactive "*p")
-  (whole-line-or-region-call-with-region 'comment-or-uncomment-region prefix t))
+  (whole-line-or-region-call-with-prefix 'comment-dwim prefix nil t))
 
 (defun smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line."
@@ -217,16 +220,12 @@
          (beginning-of-line))))
 (put 'smart-beginning-of-line 'CUA 'move)
 
-(defun locate-file-under-dir() 
-  "Locate a file under the specified directory"
-  (setq current-prefix-arg (list 1))
-  (interactive)
-  (icicle-locate-file))
-
 (defun locate-file-under-project()
   "Locate a file under the specified project"
+  (if eproject-root
+      (cd eproject-root)
+    (setq current-prefix-arg (list 1)))
   (interactive)
-  (cd eproject-root)
   (icicle-locate-file))
 
 (defun rename-file-and-buffer ()
@@ -264,7 +263,7 @@
 (define-key global-map (kbd "s-r") 'revert-buffer)
 (define-key global-map (kbd "s-t") 'locate-file-under-project)
 (define-key global-map (kbd "s-e") 'icicle-bookmark-jump)
-(define-key global-map (kbd "s-/") 'comment-or-uncomment-line-or-region)
+(define-key global-map (kbd "s-/") 'comment-dwim-line-or-region)
 (define-key global-map (kbd "s-y") 'icicle-completing-yank)
 (define-key global-map (kbd "s-j") 'secondary-to-primary)
 

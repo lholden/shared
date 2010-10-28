@@ -46,6 +46,7 @@
  '(isearch ((((class color) (min-colors 88) (background dark)) (:background "#315" :foreground "#b8f"))))
  '(isearch-fail ((((class color) (min-colors 88) (background dark)) (:background "#522" :foreground "#Fcc"))))
  '(lazy-highlight ((((class color) (min-colors 88) (background dark)) (:background "#235"))))
+ '(magit-item-highlight ((((class color) (background dark)) (:background "#272727"))))
  '(region ((((class color) (min-colors 88) (background dark)) (:background "#000055"))))
  '(show-paren-match ((((class color) (background dark)) (:background "steelblue4"))))
  '(show-paren-mismatch ((((class color)) (:background "#550088" :foreground "white")))))

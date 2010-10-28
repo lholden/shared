@@ -35,13 +35,13 @@
 (setenv "PATH" (concat (expand-file-name "~/.local/bin") path-separator (getenv "PATH")))
 (setenv "PATH" (concat (expand-file-name "~/.rvm/bin") path-separator (getenv "PATH")))
 (setenv "PATH" (concat (expand-file-name (concat user-emacs-directory "bin")) path-separator (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name "/usr/local/mysql/bin") path-separator (getenv "PATH")))
 (let ((env-path (split-string (getenv "PATH") path-separator)))
   (setq exec-path (union exec-path env-path :test 'equal)))
 
 (setenv "SBCL_HOME" (expand-file-name "~/.local/lib/sbcl"))
 
 ;; Package Requires
-(require 'rvm)
 (require 'mode-compile)
 (require 'magit)
 (require 'rinari)
@@ -50,6 +50,15 @@
 (require 'icomplete+)
 (require 'icicles)
 (require 'rspec-mode)
+(require 'rvm)
+
+;; Multi Term
+(require 'multi-term)
+(custom-set-variables
+ '(term-default-bg-color "#000000")
+ '(term-default-fg-color "#dddddd"))
+(add-hook 'term-mode-hook
+          (lambda () (setq autopair-dont-activate t)))
 
 ;; EProject
 (require 'eproject)
@@ -145,15 +154,15 @@
                  (backward-char 1))))
 
 (dolist (command '(yank yank-pop))
-       (eval `(defadvice ,command (after indent-region activate)
-                "Automatically indent yanked code"
-                (and (not current-prefix-arg)
-                     (member major-mode '(emacs-lisp-mode lisp-mode clojure-mode    scheme-mode
-                                          haskell-mode    ruby-mode rspec-mode      python-mode
-                                          c-mode          c++-mode  objc-mode       latex-mode
-                                          plain-tex-mode  js-mode))
-                     (let ((mark-even-if-inactive transient-mark-mode))
-                       (indent-region (region-beginning) (region-end) nil))))))
+  (eval `(defadvice ,command (after indent-region activate)
+           "Automatically indent yanked code"
+           (and (not current-prefix-arg)
+                (member major-mode (list 'emacs-lisp-mode 'lisp-mode 'clojure-mode 'scheme-mode
+                                         'haskell-mode    'ruby-mode 'rspec-mode   'python-mode
+                                         'c-mode          'c++-mode  'objc-mode    'latex-mode
+                                         'plain-tex-mode  'js-mode   'rhtml-mode))
+                (let ((mark-even-if-inactive transient-mark-mode))
+                  (indent-region (region-beginning) (region-end) nil))))))
 
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
@@ -274,6 +283,8 @@
 (define-key global-map (kbd "C-c r") 'rename-file-and-buffer)
 (define-key global-map (kbd "C-c s") 'eshell)
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
+(define-key global-map (kbd "C-c t") 'multi-term-next)
+(define-key global-map (kbd "C-c C-t") 'multi-term)
 
 (define-key global-map (kbd "s-o") 'vi-open-line-below)
 (define-key global-map (kbd "s-O") 'vi-open-line-above)

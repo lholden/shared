@@ -128,6 +128,7 @@
 (setq ring-bell-function 'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
+(set-face-attribute 'default nil :font "Bitstream Vera Sans Mono")
 (msb-mode t)
 
 (defun eshell/emacs (file)

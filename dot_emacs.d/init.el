@@ -76,6 +76,8 @@
 ;; Autopair
 (require 'autopair)
 (autopair-global-mode)
+;; Autopair bugs out with sldb - so do not enable it for that mode.
+(add-hook 'sldb-mode-hook #'(lambda () (setq autopair-dont-activate t)))
 
 ;; rhtml-mode
 (require 'rhtml-mode)

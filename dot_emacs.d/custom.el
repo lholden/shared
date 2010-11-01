@@ -7,8 +7,6 @@
  '(blink-cursor-interval 0.45)
  '(bookmark-default-file "~/.emacs.d/bookmarks.el")
  '(bookmark-save-flag 0)
- '(byte-compile-verbose nil)
- '(byte-compile-warnings (quote (unresolved suspicious)))
  '(c-basic-offset 2)
  '(cua-auto-tabify-rectangles nil)
  '(cua-keep-region-after-copy t)

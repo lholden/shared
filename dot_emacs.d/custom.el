@@ -25,7 +25,6 @@
  '(inhibit-startup-screen t)
  '(initial-frame-alist (quote ((menu-bar-lines . 1) (cursor-type . bar))))
  '(js-indent-level 2)
- '(line-spacing 1)
  '(make-backup-files nil)
  '(mouse-drag-copy-region nil)
  '(mouse-wheel-scroll-amount (quote (1)))

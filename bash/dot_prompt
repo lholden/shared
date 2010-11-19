@@ -3,4 +3,4 @@ function git_prompt {
   echo "  ["${ref#refs/heads/}"]"
 }
 
-export PS1="( \u@\h:\[\e[34;1m\]\w\[\e[0m\]  \[\e[30;1m\][\$(~/.rvm/bin/rvm-prompt i v g s)]\$(git_prompt)\[\e[0m\] )\n\$ "
+export PS1="( \u@\h:\[\e[34;1m\]\w\[\e[0m\]  \[\e[35m\][\$(~/.rvm/bin/rvm-prompt i v g s)]\$(git_prompt)\[\e[0m\] )\n\$ "

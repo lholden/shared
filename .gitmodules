@@ -28,3 +28,93 @@
 [submodule "dot_emacs.d/site-lisp/rvm"]
 	path = dot_emacs.d/site-lisp/rvm
 	url = http://github.com/senny/rvm.el.git
+[submodule "dot_vim/bundle/ZoomWin"]
+	path = dot_vim/bundle/ZoomWin
+	url = git://github.com/vim-scripts/ZoomWin.git
+[submodule "dot_vim/bundle/ack.vim"]
+	path = dot_vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim
+[submodule "dot_vim/bundle/auto_mkdir"]
+	path = dot_vim/bundle/auto_mkdir
+	url = https://github.com/DataWraith/auto_mkdir.git
+[submodule "dot_vim/bundle/command-t"]
+	path = dot_vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "dot_vim/bundle/gist-vim"]
+	path = dot_vim/bundle/gist-vim
+	url = git://github.com/mattn/gist-vim.git
+[submodule "dot_vim/bundle/gundo"]
+	path = dot_vim/bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "dot_vim/bundle/nerdcommenter"]
+	path = dot_vim/bundle/nerdcommenter
+	url = https://github.com/ddollar/nerdcommenter.git
+[submodule "dot_vim/bundle/puppet-vim"]
+	path = dot_vim/bundle/puppet-vim
+	url = git://github.com/ajf/puppet-vim.git
+[submodule "dot_vim/bundle/searchfold.vim"]
+	path = dot_vim/bundle/searchfold.vim
+	url = git://github.com/vim-scripts/searchfold.vim.git
+[submodule "dot_vim/bundle/snipmate.vim"]
+	path = dot_vim/bundle/snipmate.vim
+	url = git://github.com/msanders/snipmate.vim.git
+[submodule "dot_vim/bundle/supertab"]
+	path = dot_vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "dot_vim/bundle/syntastic"]
+	path = dot_vim/bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "dot_vim/bundle/tabular"]
+	path = dot_vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "dot_vim/bundle/taglist"]
+	path = dot_vim/bundle/taglist
+	url = git://github.com/vim-scripts/taglist.vim.git
+[submodule "dot_vim/bundle/vim-align"]
+	path = dot_vim/bundle/vim-align
+	url = git://github.com/tsaleh/vim-align.git
+[submodule "dot_vim/bundle/vim-coffee-script"]
+	path = dot_vim/bundle/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "dot_vim/bundle/vim-colors-solarized"]
+	path = dot_vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "dot_vim/bundle/vim-cucumber"]
+	path = dot_vim/bundle/vim-cucumber
+	url = git://github.com/tpope/vim-cucumber.git
+[submodule "dot_vim/bundle/vim-endwise"]
+	path = dot_vim/bundle/vim-endwise
+	url = git://github.com/tpope/vim-endwise.git
+[submodule "dot_vim/bundle/vim-fugitive"]
+	path = dot_vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "dot_vim/bundle/vim-git"]
+	path = dot_vim/bundle/vim-git
+	url = git://github.com/tpope/vim-git.git
+[submodule "dot_vim/bundle/vim-haml"]
+	path = dot_vim/bundle/vim-haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule "dot_vim/bundle/vim-indent-object"]
+	path = dot_vim/bundle/vim-indent-object
+	url = git://github.com/michaeljsmith/vim-indent-object.git
+[submodule "dot_vim/bundle/vim-javascript"]
+	path = dot_vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "dot_vim/bundle/vim-rails"]
+	path = dot_vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule "dot_vim/bundle/vim-rspec"]
+	path = dot_vim/bundle/vim-rspec
+	url = git://github.com/taq/vim-rspec.git
+[submodule "dot_vim/bundle/vim-surround"]
+	path = dot_vim/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "dot_vim/bundle/vim-textobj-rubyblock"]
+	path = dot_vim/bundle/vim-textobj-rubyblock
+	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule "dot_vim/bundle/vim-textobj-user"]
+	path = dot_vim/bundle/vim-textobj-user
+	url = https://github.com/kana/vim-textobj-user.git
+[submodule "dot_vim/bundle/vim-unimpaired"]
+	path = dot_vim/bundle/vim-unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git

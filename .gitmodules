@@ -118,3 +118,12 @@
 [submodule "dot_vim/bundle/vim-unimpaired"]
 	path = dot_vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "dot_vim/bundle/vim-repeat"]
+	path = dot_vim/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "dot_vim/bundle/vim-ragtag"]
+	path = dot_vim/bundle/vim-ragtag
+	url = https://github.com/tpope/vim-ragtag
+[submodule "dot_vim/bundle/nerdtree"]
+	path = dot_vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree

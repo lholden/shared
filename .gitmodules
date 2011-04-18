@@ -28,3 +28,6 @@
 [submodule "dot_emacs.d/site-lisp/rvm"]
 	path = dot_emacs.d/site-lisp/rvm
 	url = http://github.com/senny/rvm.el.git
+[submodule "dot_emacs.d/site-lisp/feature-mode"]
+	path = dot_emacs.d/site-lisp/feature-mode
+	url = https://github.com/michaelklishin/cucumber.el.git

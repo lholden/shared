@@ -51,6 +51,7 @@
 (require 'icicles)
 (require 'rspec-mode)
 (require 'rvm)
+(require 'feature-mode)
 
 ;; Multi Term
 (require 'multi-term)
@@ -107,10 +108,10 @@
 (require 'org-install)
 
 ;; Auto Complete
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
-(require 'auto-complete-config)
-(ac-config-default)
+;(require 'auto-complete)
+;(add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
+;(require 'auto-complete-config)
+;(ac-config-default)
 
 ;; YASnippet
 (require 'yasnippet)
@@ -300,6 +301,7 @@
 (define-key global-map (kbd "s-/") 'comment-dwim-line-or-region)
 (define-key global-map (kbd "s-y") 'icicle-completing-yank)
 (define-key global-map (kbd "s-j") 'whole-line-or-region-delete)
+(define-key global-map (kbd "s-w") 'delete-window)
 (define-key global-map (kbd "s-<return>") 'newline)
 
 (define-key global-map (kbd "s-<left>") 'smart-beginning-of-line)

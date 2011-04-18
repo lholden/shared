@@ -130,4 +130,3 @@
 [submodule "dot_vim/bundle/nerdtree"]
 	path = dot_vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
->>>>>>> 25e5e4fc7dde61bffb3c65e5e48d2687dd3b59b8

@@ -1,39 +1,62 @@
 if has("gui_macvim")
   set fuoptions=maxhorz,maxvert
+  set guifont=Menlo\ Regular:h12
+  set number
+  set guioptions=ce
+  set spell
+  set spelllang=en_us
 
-  " Command-T for CommandT
   macmenu &File.New\ Tab key=<D-T>
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
+  macmenu &File.Open\.\.\. key=<nop>
+  macmenu &Tools.Make key=<nop>
+  macmenu &Edit.Find.Find\.\.\. key=<nop>
 
-  " Command-Shift-F for Ack
-  map <D-F> :Ack<space>
-  " Command-e for ConqueTerm
-  map <D-e> :call StartTerm()<CR>
+  map <D-o> <Leader>o
+  vmap <D-o> Leader>o
+  imap <D-o> <Esc><Leader>o
 
-  " Command-][ to increase/decrease indentation
+  map <D-t> <Leader>t
+  vmap <D-t> Leader>t  
+  imap <D-t> <Esc><Leader>t
+
+  map <D-f> <Leader>f
+  vmap <D-f> Leader>f  
+  imap <D-f> <Esc><Leader>f
+
+  map <D-e> <Leader>e
+  vmap <D-e> <Leader>e  
+  imap <D-e> <Esc><Leader>e
+
+  map <D-b> <Leader>b
+  vmap <D-b> <Leader>b
+  imap <D-b> <Esc><Leader>b
+
+  map <D-]> <Leader><]>
+  map <D-[> <Leader><[>
   vmap <D-]> >gv
   vmap <D-[> <gv
-  imap <D-]> >>
-  imap <D-[> <<
-  map <D-]> >>
-  map <D-[> <<
+  imap <D-]> <Esc> <Leader><]>
+  imap <D-[> <Esc> <Leader><[>
 
+  map <D-/> <Leader></>
+  vmap <D-/> <Leader></>  
+  imap <D-/> <Esc> <Leader></>
 
-  " Command-Option-ArrowKey to switch viewports
-  map <D-M-Up> <C-w>k
-  imap <D-M-Up> <Esc> <C-w>k
-  map <D-M-Down> <C-w>j
-  imap <D-M-Down> <Esc> <C-w>j
-  map <D-M-Right> <C-w>l
-  imap <D-M-Right> <Esc> <C-w>l
-  map <D-M-Left> <C-w>h
-  imap <D-M-Left> <C-w>h
+  map <D-M-Up> <Leader><M-Up> 
+  vmap <D-M-Up> <Leader><M-Up>   
+  imap <D-M-Up> <Esc> <Leader><M-Up>
 
-  " Adjust viewports to the same size
-  map <Leader>= <C-w>=
-  imap <Leader>= <Esc> <C-w>=
+  map <D-M-Down> <Leader><M-Down>
+  vmap <D-M-Down> <Leader><M-Down>  
+  imap <D-M-Down> <Esc> <Leader><M-Down>
 
+  map <D-M-Right> <Leader><M-Right>
+  vmap <D-M-Right> <Leader><M-Right>  
+  imap <D-M-Right> <Esc> <Leader><M-Right>
+
+  map <D-M-Left> <Leader><M-Left>
+  vmap <D-M-Left> <Leader><M-Left>
+  imap <D-M-Left> <Leader><M-Left>
 endif
 
 " ConqueTerm wrapper

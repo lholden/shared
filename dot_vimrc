@@ -1,75 +1,95 @@
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#helptags()
 
 syntax on
-set nobackup
-set noswapfile
 
 filetype plugin indent on
 filetype plugin on
-set backspace=indent,eol,start
-au FileType python  set tabstop=4 textwidth=79
-" make uses real tabs
-au FileType make                                     set noexpandtab
 
-" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au FileType python  set tabstop=4 textwidth=79
+au FileType make                                     set noexpandtab
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
-
+set encoding=utf-8
+set nobackup
+set noswapfile
 set nocompatible
-set guifont=Menlo\ Regular:h13
-set number
 set ruler
 set autoindent
-
-set encoding=utf-8
-
 set nowrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-"set list listchars=tab:\ \ ,trail:·
-
-set hlsearch
+set nohls
 set incsearch
 set ignorecase
 set smartcase
-
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wildmenu
-
 set laststatus=2
-
 set hidden
 set title
 set scrolloff=3
 set shortmess=atI
 set visualbell
-set guioptions=aAce
-set spell
-set spelllang=en_us
-
-let mapleader = ","
-
-colorscheme twilight
-highlight Cursor guifg=black guibg=grey
-
+set wrap
+set linebreak
+set breakat=\ |@-+;,./?^I
+set showbreak=~>\ 
+set cursorline
 set modeline
 set modelines=10
+set backspace=indent,eol,start
+set autoread
 
+colorscheme jellybeans
+
+hi SpellBad term=reverse cterm=underline ctermbg=88 gui=underline guibg=#401010 guisp=Red
+hi SpellCap term=reverse cterm=underline ctermbg=20 gui=underline guibg=#000040 guisp=Blue
+hi SpellRare term=reverse cterm=underline ctermbg=53 gui=underline guibg=#310041 guisp=Magenta
+hi SpellLocal term=underline cterm=underline ctermbg=23 gui=underline guibg=#003020 guisp=Cyan
+highlight Cursor guifg=black guibg=grey
+
+
+let mapleader = ","
 let g:CommandTMaxHeight=20
+let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=apollo_development:extra=-t'
+let g:dbext_default_profile = 'mysql_local'
 
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
+nmap gV `[v`]
+
+" Bubble lines
+map <C-Up> [e
+map <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
-map <Leader><Leader> :ZoomWin<CR>
-nmap gV `[v`]
+" Indentation
+map <Leader><[> <<
+map <Leader><]> >>
+vmap <Leader><]> >gv
+vmap <Leader><[> <gv
+
+" Commenting
+map <Leader></> <plug>NERDCommenterToggle<CR>
+vmap <Leader></> <plug>NERDCommenterToggle<CR>
+
+" Viewports
+map <Leader><M-Up> <C-w>k
+map <Leader><M-Down> <C-w>j
+map <Leader><M-Right> <C-w>l
+map <Leader><M-Left> <C-w>h
+
+" Equalize windows
+map <Leader>= <C-w>=
+vmap <Leader>= <C-w>=
+
 nnoremap <leader>u :GundoToggle<CR>
-map <D-/> <plug>NERDCommenterToggle<CR>
+map <Leader><Leader> :ZoomWin<CR>
+map <Leader>b :FufBuffer<CR>
+map <Leader>t :CommandTFlush<CR>:CommandT<CR>
+map <Leader>o :FufFile<CR>
+map <Leader>f :Ack<space>
+map <Leader>e :call StartTerm()<CR>

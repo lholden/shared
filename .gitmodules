@@ -132,4 +132,4 @@
 	url = https://github.com/scrooloose/nerdtree
 [submodule "dot_vim/bundle/vim-dbext"]
 	path = dot_vim/bundle/vim-dbext
-	url = https://github.com/shemerey/vim-dbext
+	url = https://github.com/edsono/vim-dbext.git

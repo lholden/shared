@@ -54,7 +54,7 @@ hi SpellLocal term=underline cterm=underline ctermbg=23 gui=underline guibg=#003
 highlight Cursor guifg=black guibg=grey
 
 
-let mapleader = ","
+"let mapleader = "<SPACE>"
 let g:CommandTMaxHeight=20
 let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=apollo_development:extra=-t'
 let g:dbext_default_profile = 'mysql_local'
@@ -78,19 +78,25 @@ map <Leader></> <plug>NERDCommenterToggle<CR>
 vmap <Leader></> <plug>NERDCommenterToggle<CR>
 
 " Viewports
-map <Leader><M-Up> <C-w>k
-map <Leader><M-Down> <C-w>j
-map <Leader><M-Right> <C-w>l
-map <Leader><M-Left> <C-w>h
+map <Leader><Up> <C-w>k
+map <Leader><Down> <C-w>j
+map <Leader><Right> <C-w>l
+map <Leader><Left> <C-w>h
 
 " Equalize windows
 map <Leader>= <C-w>=
 vmap <Leader>= <C-w>=
 
 nnoremap <leader>u :GundoToggle<CR>
-map <Leader><Leader> :ZoomWin<CR>
+map <Leader><Backspace> :ZoomWin<CR>
 map <Leader>b :FufBuffer<CR>
 map <Leader>t :CommandTFlush<CR>:CommandT<CR>
 map <Leader>o :FufFile<CR>
 map <Leader>f :Ack<space>
 map <Leader>e :call StartTerm()<CR>
+
+
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa

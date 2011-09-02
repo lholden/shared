@@ -8,5 +8,6 @@ export LANG="en_US.UTF-8"
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt
 [[ -s $HOME/.alias ]] && source $HOME/.alias
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-[[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+[[ -e `which brew` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
 
+# vim: set filetype=sh :

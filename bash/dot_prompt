@@ -1,21 +1,60 @@
-declare MAX_PATH_LENGTH=40
+declare -r MAX_PATH_LENGTH=40
+declare -r GIT_PS1_SHOWDIRTYSTATE=true
 
-function short_path {
-  declare str=${PWD/#$HOME/\~}
+declare -r COLOR_PATH="\[\e[34;1m\]"
+declare -r COLOR_EXTRAS="\[\e[35m\]"
+declare -r COLOR_USER="\[\e[1;36;40m\]"
+declare -r COLOR_ROOT="\[\e[1;31;40m\]"
+declare -r COLOR_HOST=""
+declare -r COLOR_RESET="\[\e[0m\]"
+
+function prompt_path {
+  declare path="$1"
   declare prefix
-  [[ "$str" =~ (~) ]] && prefix="~/"
 
-  if [[ ${#str} -gt $MAX_PATH_LENGTH ]]; then
-    str=${str: -$(($MAX_PATH_LENGTH - ${#prefix}))}
-    [[ "$str" =~ ^[^/]*/(.*) ]] && str="$prefix(...)${BASH_REMATCH[1]}"
+  [[ "$path" =~ (~) ]] && prefix="~/"
+
+  if [[ ${#path} -gt $MAX_PATH_LENGTH ]]; then
+    path=${path: -$(($MAX_PATH_LENGTH - ${#prefix}))}
+    [[ "$path" =~ ^[^/]*/(.*) ]] && path="$prefix(...)${BASH_REMATCH[1]}"
   fi
 
-  echo $str
+  echo $path
 }
 
-function git_prompt {
-  declare str="$(__git_ps1)"
-  [[ ! -z "$str" ]] && echo "  [${str:2:((${#str} - 3))}]"
+function prompt_git {
+  [[ $(type -t __git_ps1) ]] || return
+  declare branch="$(__git_ps1)"
+  if [[ ! -z "$branch" ]]; then 
+    echo "  [${branch:2:((${#branch} - 3))}]"
+  fi
 }
 
-export PS1="( \u@\h:\[\e[34;1m\]\$(short_path)\[\e[0m\]  \[\e[35m\][\$(~/.rvm/bin/rvm-prompt i v g s)]\$(git_prompt)\[\e[0m\] )\n\$ "
+function prompt_rvm {
+  [[ -f ~/.rvm/bin/rvm-prompt ]] || return
+  echo "  [$(~/.rvm/bin/rvm-prompt i v g s)]"
+}
+
+function prompt_jobs {
+  declare num_jobs=$1
+  declare jobs_str
+
+  case $num_jobs in
+    (0) return ;;
+    (1) jobs_str="job";;
+    (*) jobs_str="jobs";;
+  esac
+
+  echo "  [$num_jobs $jobs_str]"
+}
+
+declare color_by_id
+
+case $EUID in
+  (0) color_by_id=$COLOR_ROOT ;;
+  (*) color_by_id=$COLOR_USER ;;
+esac
+
+export PS1="( $color_by_id\u$COLOR_RESET@$COLOR_HOST\h$COLOR_RESET:$COLOR_PATH\$(prompt_path '\w')$COLOR_RESET$COLOR_EXTRAS\$(prompt_rvm)\$(prompt_git)\$(prompt_jobs \j)$COLOR_RESET )\n\$ "
+
+# vim: set filetype=sh :

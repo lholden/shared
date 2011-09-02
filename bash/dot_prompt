@@ -3,7 +3,7 @@ declare -r GIT_PS1_SHOWDIRTYSTATE=true
 
 declare -r COLOR_PATH="\[\e[34;1m\]"
 declare -r COLOR_EXTRAS="\[\e[35m\]"
-declare -r COLOR_USER="\[\e[1;36;40m\]"
+declare -r COLOR_USER=""
 declare -r COLOR_ROOT="\[\e[1;31;40m\]"
 declare -r COLOR_HOST=""
 declare -r COLOR_RESET="\[\e[0m\]"

@@ -14,7 +14,7 @@ function prompt_path {
 
   [[ "$path" =~ (~) ]] && prefix="~/"
 
-  if [[ ${#path} -gt $MAX_PATH_LENGTH ]]; then
+  if (( ${#path} > $MAX_PATH_LENGTH )); then
     path=${path: -$(($MAX_PATH_LENGTH - ${#prefix}))}
     [[ "$path" =~ ^[^/]*/(.*) ]] && path="$prefix(...)${BASH_REMATCH[1]}"
   fi

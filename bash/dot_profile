@@ -2,7 +2,7 @@ export CLICOLOR=1
 export SBCL_HOME=$HOME/.local/lib/sbcl
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.local/bin:$HOME/.local/Cellar/python/2.7.1/bin:$PATH
-export NODE_PATH=$HOME/.local/lib/node to your NODE_PATH
+export NODE_PATH=$HOME/.local/lib/node
 export LANG="en_US.UTF-8"
 
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt

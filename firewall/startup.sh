@@ -28,12 +28,12 @@ for command in "${commands[@]}"; do
   ###
   # Flush rules
   ###
-  echo "*** Flushing Rules"
+  echo "  * Flushing Rules"
   $command -F
   $command -X
   $command -Z
 
-  echo "*** Configuring Default Policy"
+  echo "  * Configuring Default Policy"
   source default_policy.sh
 
   ###
@@ -43,17 +43,17 @@ for command in "${commands[@]}"; do
   $command -N inbound
   $command -N outbound
 
-  echo "*** Configuring Bad-Packet Chains"
+  echo "  * Configuring Bad-Packet Chains"
   source bad_packets.sh
-  echo "*** Configuring Inbound Chains"
+  echo "  * Configuring Inbound Chains"
   source inbound.sh
-  echo "*** Configuring Outbound Chains"
+  echo "  * Configuring Outbound Chains"
   source outbound.sh
 
   ###
   # INPUT
   ###
-  echo "*** Setting up INPUT Filtering"
+  echo "  * Setting up INPUT Filtering"
   # Loopback
   $command -A INPUT -i lo -j ACCEPT
 
@@ -67,7 +67,7 @@ for command in "${commands[@]}"; do
   ###
   # OUTPUT
   ###
-  echo "*** Setting up OUTPUT Filtering"
+  echo "  * Setting up OUTPUT Filtering"
   # Loopback
   $command -A OUTPUT -p ALL -s $lo_ip -j ACCEPT
   $command -A OUTPUT -p ALL -o lo -j ACCEPT

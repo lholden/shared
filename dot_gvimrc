@@ -3,6 +3,8 @@ if has("gui_running")
   set spell
   set spelllang=en_us
   set guioptions-=T
+  set guioptions-=m
+
   set winaltkeys=no
   set clipboard=unnamed
 
@@ -112,6 +114,11 @@ if has("gui_running")
     map <M-left> <leader><Left>
     vmap <M-left> <leader><Left>
     imap <M-left> <esc> <leader><Left>
+
+    map <M-w> <C-w>c
+    vmap <M-w> <C-w>c
+    imap <M-w> <esc> <C-w>c
+
 
   endif
 

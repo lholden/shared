@@ -94,7 +94,6 @@ map <Leader>o :FufFile<CR>
 map <Leader>f :Ack<space>
 map <Leader>e :call StartTerm()<CR>
 
-
 vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p

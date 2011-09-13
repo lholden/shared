@@ -10,7 +10,7 @@ commands=( iptables ip6tables )
 for command in "${commands[@]}"; do
   icmp="icmp"
   lo_ip="127.0.0.1"
-  if [[  "$command" = "ip6tables" ]]; then
+  if [[ "$command" = "ip6tables" ]]; then
     icmp="icmpv6"
     lo_ip="::1"
   fi

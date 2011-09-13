@@ -27,6 +27,7 @@ $command -A bad_tcp_packets -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
 $command -A bad_tcp_packets -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
 
 # Syn Flooding
+# Should likely tuned based on expected limit of desired connections/second.
 $command -A bad_tcp_packets -p tcp --syn -m limit --limit 100/second --limit-burst 150 -j RETURN
 $command -A bad_tcp_packets -p tcp --syn -j DROP
 

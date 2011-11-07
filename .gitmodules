@@ -42,7 +42,7 @@
 	url = https://github.com/DataWraith/auto_mkdir.git
 [submodule "dot_vim/bundle/command-t"]
 	path = dot_vim/bundle/command-t
-	url = git://git.wincent.com/command-t.git
+	url = https://github.com/wincent/Command-T.git
 [submodule "dot_vim/bundle/gist-vim"]
 	path = dot_vim/bundle/gist-vim
 	url = git://github.com/mattn/gist-vim.git

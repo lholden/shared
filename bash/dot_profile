@@ -1,5 +1,6 @@
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
+export EDITOR="vim"
 
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt
 [[ -s $HOME/.alias ]] && source $HOME/.alias

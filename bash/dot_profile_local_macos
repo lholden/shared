@@ -3,5 +3,9 @@ export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.local/bin:$HOME/.local/Cellar/python/2.7.1/bin:$PATH
 export NODE_PATH=$HOME/.local/lib/node
 
+export PAGER=$HOME/.local/bin/vimpager
+
+export INPUTRC=~/.inputrc
+
 # vim: set filetype=sh :
 

@@ -1,11 +1,12 @@
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
+export EDITOR="vim"
 
 [[ -s $HOME/.profile.local ]] && source $HOME/.profile.local
 
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt
 [[ -s $HOME/.alias ]] && source $HOME/.alias
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-[[ -e `which brew` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+[[ -e `which brew 2> /dev/null` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
 
 # vim: set filetype=sh :

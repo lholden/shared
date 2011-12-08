@@ -127,3 +127,6 @@
 [submodule "dot_vim/bundle/nerdtree"]
 	path = dot_vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+[submodule "dot_emacs.d/site-lisp/icicles"]
+	path = dot_emacs.d/site-lisp/icicles
+	url = https://github.com/emacsmirror/icicles.git

@@ -1,33 +1,30 @@
 [submodule "dot_emacs.d/site-lisp/magit"]
 	path = dot_emacs.d/site-lisp/magit
-	url = http://github.com/philjackson/magit.git
+	url = https://github.com/philjackson/magit.git
 [submodule "dot_emacs.d/site-lisp/rinari"]
 	path = dot_emacs.d/site-lisp/rinari
-	url = http://github.com/eschulte/rinari.git
+	url = https://github.com/eschulte/rinari.git
 [submodule "dot_emacs.d/site-lisp/rhtml-mode"]
 	path = dot_emacs.d/site-lisp/rhtml-mode
-	url = http://github.com/eschulte/rhtml.git
-[submodule "dot_emacs.d/site-lisp/icicles"]
-	path = dot_emacs.d/site-lisp/icicles
-	url = http://github.com/emacsmirror/icicles.git
+	url = https://github.com/eschulte/rhtml.git
 [submodule "dot_emacs.d/site-lisp/jump"]
 	path = dot_emacs.d/site-lisp/jump
-	url = http://github.com/eschulte/jump.el.git
+	url = https://github.com/eschulte/jump.el.git
 [submodule "dot_emacs.d/site-lisp/color-theme"]
 	path = dot_emacs.d/site-lisp/color-theme
-	url = http://github.com/haxney/color-theme.git
+	url = https://github.com/haxney/color-theme.git
 [submodule "dot_emacs.d/site-lisp/org-mode"]
 	path = dot_emacs.d/site-lisp/org-mode
 	url = git://repo.or.cz/org-mode.git
 [submodule "dot_emacs.d/site-lisp/eproject"]
 	path = dot_emacs.d/site-lisp/eproject
-	url = http://github.com/jrockway/eproject.git
+	url = https://github.com/jrockway/eproject.git
 [submodule "dot_emacs.d/site-lisp/rspec-mode"]
 	path = dot_emacs.d/site-lisp/rspec-mode
-	url = http://github.com/pezra/rspec-mode.git
+	url = https://github.com/pezra/rspec-mode.git
 [submodule "dot_emacs.d/site-lisp/rvm"]
 	path = dot_emacs.d/site-lisp/rvm
-	url = http://github.com/senny/rvm.el.git
+	url = https://github.com/senny/rvm.el.git
 [submodule "dot_emacs.d/site-lisp/feature-mode"]
 	path = dot_emacs.d/site-lisp/feature-mode
 	url = https://github.com/michaelklishin/cucumber.el.git
@@ -48,7 +45,7 @@
 	url = git://github.com/mattn/gist-vim.git
 [submodule "dot_vim/bundle/gundo"]
 	path = dot_vim/bundle/gundo
-	url = http://github.com/sjl/gundo.vim.git
+	url = https://github.com/sjl/gundo.vim.git
 [submodule "dot_vim/bundle/nerdcommenter"]
 	path = dot_vim/bundle/nerdcommenter
 	url = https://github.com/ddollar/nerdcommenter.git

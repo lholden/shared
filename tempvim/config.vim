@@ -1,5 +1,4 @@
 set nocompatible
-let mapleader=","
 runtime vundle.vim
 runtime keybinds.vim
 

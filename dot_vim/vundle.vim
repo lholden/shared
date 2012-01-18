@@ -1,3 +1,8 @@
+""" On a fresh clone run the following commands:
+" mkdir bundle; cd bundle
+" git clone https://github.com/gmarik/vundle.git
+" vim +BundleInstall
+
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()

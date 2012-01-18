@@ -1,0 +1,19 @@
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'sickill/vim-pasta'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic.git'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'millermedeiros/vim-statline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-repeat'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-haml'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-unimpaired'

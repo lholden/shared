@@ -1,8 +1,12 @@
+" FuzzyFinder
+map <Leader>b :FufBuffer<CR>
+vmap <Leader>b <ESC>:FufBuffer<CR>
+map <Leader>o :FufFile<CR>
+vmap <Leader>o <ESC>:FufFile<CR>
+
 " CtrlP
 map <Leader>t :CtrlP<CR>
-map <Leader>b :CtrlPBuffer<CR>
 vmap <Leader>t <ESC>:CtrlP<CR>
-vmap <Leader>b <ESC>:CtrlPBuffer<CR>
 
 " Bubble lines
 map <C-Up> [e
@@ -27,6 +31,7 @@ map <Leader><Right> <C-w>l
 map <Leader><Left> <C-w>h
 map <Leader>= <C-w>=
 map <Leader><Backspace> :ZoomWin<CR>
+map <Leader>w :bw<CR>
 map <S-Up> :ObviousResizeUp<CR>
 map <S-Down> :ObviousResizeDown<CR>
 map <S-Right> :ObviousResizeRight<CR>

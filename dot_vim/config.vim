@@ -45,5 +45,7 @@ hi SpellRare term=reverse cterm=underline ctermbg=53 gui=underline guibg=#310041
 hi SpellLocal term=underline cterm=underline ctermbg=23 gui=underline guibg=#003020 guisp=Cyan
 highlight Cursor guifg=black guibg=grey
 
-" bundle settings
+" settings for installed bundles
 let g:statline_fugitive = 1
+let g:ctrlp_dotfiles = 1
+let g:ctrlp_lazy_update = 100

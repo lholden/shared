@@ -1,8 +1,12 @@
+" FuzzyFinder
+map <Leader>b :FufBuffer<CR>
+vmap <Leader>b <ESC>:FufBuffer<CR>
+map <Leader>o :FufFile<CR>
+vmap <Leader>o <ESC>:FufFile<CR>
+
 " CtrlP
 map <Leader>t :CtrlP<CR>
-map <Leader>b :CtrlPBuffer<CR>
 vmap <Leader>t <ESC>:CtrlP<CR>
-vmap <Leader>b <ESC>:CtrlPBuffer<CR>
 
 " Bubble lines
 map <C-Up> [e

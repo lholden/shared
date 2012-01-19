@@ -31,6 +31,7 @@ map <Leader><Right> <C-w>l
 map <Leader><Left> <C-w>h
 map <Leader>= <C-w>=
 map <Leader><Backspace> :ZoomWin<CR>
+map <Leader>w :bw<CR>
 
 " Gundo
 map <leader>u :GundoToggle<CR>

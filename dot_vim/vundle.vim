@@ -1,10 +1,21 @@
-""" On a fresh clone run the following commands:
+""" If VIM doesn't automatically clone vundle and setup the plugins:
 " mkdir bundle; cd bundle
 " git clone https://github.com/gmarik/vundle.git
 " vim +BundleInstall
 
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+let $VIMHOME=expand('<sfile>:p:h')
+
+if !isdirectory($VIMHOME . "/bundle")
+  echo "Making bundle directory\n"
+  call mkdir($VIMHOME . "/bundle")
+endif
+
+if !isdirectory($VIMHOME . "/bundle/vundle")
+  silent !git clone https://github.com/gmarik/vundle.git $VIMHOME/bundle/vundle
+endif
+
+let &rtp.=',' . $VIMHOME . '/bundle/vundle/'
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -31,3 +42,7 @@ Bundle 'talek/obvious-resize'
 Bundle 'YankRing.vim'
 Bundle 'clones/vim-l9'
 Bundle 'clones/vim-fuzzyfinder' 
+
+if !isdirectory($VIMHOME . "/bundle/vim-fugitive/")
+  BundleInstall
+endif

@@ -40,3 +40,6 @@ map <S-Left> :ObviousResizeLeft<CR>
 " Gundo
 map <leader>u :GundoToggle<CR>
 vmap <leader>u <ESC>:GundoToggle<CR>
+
+" YankRing
+map <leader>p :YRShow<CR>

@@ -42,6 +42,7 @@ Bundle 'talek/obvious-resize'
 Bundle 'YankRing.vim'
 Bundle 'clones/vim-l9'
 Bundle 'clones/vim-fuzzyfinder' 
+Bundle 'vimwiki'
 
 if !isdirectory($VIMHOME . "/bundle/vim-fugitive/")
   BundleInstall

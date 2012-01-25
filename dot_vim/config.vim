@@ -49,3 +49,6 @@ highlight Cursor guifg=black guibg=grey
 let g:statline_fugitive = 1
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_lazy_update = 100
+
+" vimwiki
+let g:vimwiki_list = [{'path': $HOME.'/.wiki/', 'path_html': $HOME.'/.wiki_html/'}]

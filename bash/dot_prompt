@@ -24,9 +24,9 @@ function prompt_path {
 
 function prompt_git {
   [[ $(type -t __git_ps1) ]] || return
-  declare branch="$(__git_ps1)"
+  declare branch="$(__git_ps1 '%s')"
   if [[ ! -z "$branch" ]]; then 
-    echo "  [${branch:2:((${#branch} - 3))}]"
+    echo "  [$branch]"
   fi
 }
 

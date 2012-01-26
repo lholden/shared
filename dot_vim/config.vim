@@ -50,8 +50,15 @@ highlight Cursor guifg=black guibg=grey
 let g:statline_fugitive = 1
 
 " ctrlp
-let g:ctrlp_dotfiles = 1
 let g:ctrlp_lazy_update = 100
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_height = 12
 
 " vimwiki
 let g:vimwiki_list = [{'path': $HOME.'/.wiki/', 'path_html': $HOME.'/.wiki_html/'}]
+
+" FuzzyFinder
+let g:fuf_abbrevMap = {
+      \ '^vim:' : [ $VIMHOME ],
+      \ '^home:' : [ $HOME ],
+      \}

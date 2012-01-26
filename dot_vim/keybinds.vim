@@ -3,6 +3,8 @@ map <Leader>b :FufBuffer<CR>
 vmap <Leader>b <ESC>:FufBuffer<CR>
 map <Leader>o :FufFile<CR>
 vmap <Leader>o <ESC>:FufFile<CR>
+"map <Leader>t :FufCoverageFile<CR>
+"vmap <Leader>t <ESC>:FufCoverageFile<CR>
 
 " CtrlP
 map <Leader>t :CtrlP<CR>

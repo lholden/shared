@@ -48,4 +48,5 @@ Bundle 'vimwiki'
 
 if !isdirectory($VIMHOME . "/bundle/vim-fugitive/")
   BundleInstall
+  exit
 endif

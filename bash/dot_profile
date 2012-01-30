@@ -9,6 +9,6 @@
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
 export EDITOR="vim"
-[[ -e `which vimpager` ]] && export PAGER="vimpager"
+[[ -e `which vimpager 2> /dev/null` ]] && export PAGER="vimpager"
 
 # vim: set filetype=sh :

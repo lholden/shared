@@ -24,20 +24,19 @@ $command -A blacklisted_inbound -j RETURN
 ###
 # Chain: UDP Inbound
 ###
-# $command -A udp_inbound -p UDP --dport 12345 -j ACCEPT
+# $command -A udp_inbound -p UDP --dport 12345 -j ACCEPT # Example UDP port
 $command -A udp_inbound -p UDP -j RETURN
 
 ###
 # Chain: TCP Inbound
 ###
-#$command -A tcp_inbound -p TCP --dport 22 -j ACCEPT
+#$command -A tcp_inbound -p TCP --dport 22 -j ACCEPT # SSH
 $command -A tcp_inbound -p TCP -j RETURN
 
 ###
 # Chain: ICMP Inbound 
 ###
-# Echo Request
-# $command -A icmp_inbound -p $icmp --${icmp}-type 8 -j ACCEPT
+# $command -A icmp_inbound -p $icmp --${icmp}-type 8 -j ACCEPT # Echo Request
 
 # Time Exceeds
 $command -A icmp_inbound -p $icmp --${icmp}-type 11 -j ACCEPT

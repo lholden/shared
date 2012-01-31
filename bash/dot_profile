@@ -1,6 +1,7 @@
 [[ -s $HOME/.profile.local ]] && source $HOME/.profile.local
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt
-[[ -x `which brew 2> /dev/null` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+[[ -s /etc/bash_completion ]] && source /etc/bash_completion
+[[ -x `which brew 2> /dev/null` ]] && [[ -s `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 [[ -x $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 

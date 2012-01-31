@@ -8,7 +8,7 @@
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
 export EDITOR="vim"
-[[ -x `which vimpager` ]] && export PAGER="vimpager"
+[[ -x `which vimpager 2> /dev/null` ]] && export PAGER="vimpager"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -24,5 +24,10 @@ HISTFILESIZE=2000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# Export the LS_COLORS variable if we have dircolors
+if [[ -x `which dircolors 2> /dev/null` ]]; then
+  ([[ -s $HOME/.dircolors ]] && eval "$(dircolors -b $HOME/.dircolors)") || eval "$(dircolors -b)"
+fi
 
 # vim: set filetype=sh :

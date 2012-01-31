@@ -1,14 +1,28 @@
 [[ -s $HOME/.profile.local ]] && source $HOME/.profile.local
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt
 [[ -s $HOME/.alias ]] && source $HOME/.alias
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-[[ -e `which brew 2> /dev/null` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
-
-[[ -s "/Users/Lori/.rvm/scripts/rvm" ]] && source "/Users/Lori/.rvm/scripts/rvm"
+[[ -x `which brew 2> /dev/null` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
 export EDITOR="vim"
-[[ -e `which vimpager` ]] && export PAGER="vimpager"
+[[ -x `which vimpager` ]] && export PAGER="vimpager"
+
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 # vim: set filetype=sh :

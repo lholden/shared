@@ -1,6 +1,5 @@
 [[ -s $HOME/.profile.local ]] && source $HOME/.profile.local
 [[ -s $HOME/.prompt ]] && source $HOME/.prompt
-[[ -s $HOME/.alias ]] && source $HOME/.alias
 [[ -x `which brew 2> /dev/null` ]] && [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 [[ -x $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
@@ -30,4 +29,7 @@ if [[ -x `which dircolors 2> /dev/null` ]]; then
   ([[ -s $HOME/.dircolors ]] && eval "$(dircolors -b $HOME/.dircolors)") || eval "$(dircolors -b)"
 fi
 
+[[ -s $HOME/.alias ]] && source $HOME/.alias
+
 # vim: set filetype=sh :
+

@@ -32,5 +32,6 @@ fi
 
 [[ -s $HOME/.alias ]] && source $HOME/.alias
 
+unset command_not_found_handle
 # vim: set filetype=sh :
 

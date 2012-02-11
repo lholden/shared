@@ -1,0 +1,9 @@
+#CONFIG COLOR ON                                                                                                                  
+#CONFIG VERBATIM ON
+#SPLIT
+#GAG {~^\e[0;1;[30|31|32|33|34|35|36|37]m\e[1;[30|31|32|33|34|35|36|37]m^}
+#GAG {~^\e[0;[30|31|32|33|34|35|36|37]m\e[[30|31|32|33|34|35|36|37]m^}
+#prompt {%1h, %2m, %3e, %4w %5-} {<088>- <128>%1h<088> | <148>%2m<088> | <138>%3e<088> | <158>%4w<088> --- ( <018>%5<088> ) -}
+#act {Password correct. Welcome to Achaea.} {#config {COMMAND ECHO} {ON}}
+#config {COMMAND ECHO} {OFF}
+#SESSION achaea 69.65.42.66 23

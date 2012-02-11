@@ -8,6 +8,8 @@ if [[ -n "$LS_COLORS" ]]; then
   alias egrep='egrep --color=auto'
 fi
 
+alias tt++="tt++ -G"
+
 [[ -s $HOME/.alias.local ]] && source $HOME/.alias.local
 
 # vim: set filetype=sh :

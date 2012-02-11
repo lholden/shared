@@ -1,0 +1,11 @@
+#CONFIG COLOR ON;
+#CONFIG VERBATIM ON;
+#SPLIT;
+#act {^############# Reconnecting to Game #############} {#config {COMMAND ECHO} {ON}};
+#act {^For recent changes, please read the announce board or visit aardwolf.com} {#config {COMMAND ECHO} {ON}};
+#act {^We hope you have enjoyed playing Aardwolf and will return soon.} {#end};
+#prompt {^[%1/%2hp %3/%4mn %5/%6mv %7qt %8tnl] >} {<108>[ <128>%1<108>/<128>%2<108>hp <148>%3<108>/<148>%4<108>mn <138>%5<108>/<138>%6<108>mv <158>%7<108>qt <168>%8<108>tnl ]<088>};
+#prompt {^[Fighting: %1/%2hp %3/%4mn %5/%6mv %7tnl %*]>} {<108>[ <118>Fighting: <128>%1<108>/<128>%2<108>hp <148>%3<108>/<148>%4<108>mn <138>%5<108>/<138>%6<108>mv <168>%7<108>tnl <178>%8<108> ]<088>};
+#prompt {[ Paging : (Enter), (T)op, (Q)uit, (B)ack, (R)efresh, (L)ast, (A)ll ]:} {<074>[ Paging: (<134>Enter<074>), (<134>T<074>)op, (<134>Q<084>)uit, (<134>B<074>)ack, (<134>R<074>)efresh, (<134>L<074>)ast, (<134>A<074>)ll ]<088>};
+#config {COMMAND ECHO} {OFF};
+#SESSION {aardwolf} {aardmud.org} {4000};

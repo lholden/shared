@@ -45,6 +45,7 @@ Bundle 'YankRing.vim'
 Bundle 'clones/vim-l9'
 Bundle 'clones/vim-fuzzyfinder' 
 Bundle 'vimwiki'
+Bundle 'tangledhelix/vim-octopress'
 
 if !isdirectory($VIMHOME . "/bundle/vim-fugitive/")
   BundleInstall

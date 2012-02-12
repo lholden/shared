@@ -8,6 +8,7 @@ filetype plugin indent on
 filetype plugin on
 
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {*.tt,*.tin} set syntax=tt
 
 set autoindent
 set nowrap

@@ -20,8 +20,20 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 if [[ -z "$TMUX" ]] && [[ -x `which tmux 2> /dev/null` ]]; then
+  # Make sure our base session is launched if it isn't already
   tmux has-session -t lori || tmux new-session -d -s lori
-  tmux attach -t lori
+
+  # Find stale sessions and let them die
+  old_sessions=$(tmux ls 2>/dev/null | egrep "^[0-9]{14}.*[0-9]+\)$" | cut -f 1 -d:)
+  for old_session_id in $old_sessions; do
+    tmux kill-session -t $old_session_id
+  done
+
+  session_id="$(date +%Y%m%d%H%M%S)$$"
+  tmux new-session -d -t lori -s $session_id
+  tmux new-window -t $session_id
+  tmux attach-session -t $session_id
+  tmux kill-session -t $session_id
   exit
 fi
 

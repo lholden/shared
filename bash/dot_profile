@@ -1,20 +1,8 @@
-if [[ -z "$TMUX" ]] && [[ -x `which tmux 2> /dev/null` ]]; then
-  tmux has-session -t lori || tmux new-session -d -s lori
-  tmux attach -t lori
-  exit
-fi
-
 [[ -s $HOME/.profile.local ]] && source $HOME/.profile.local
-[[ -s $HOME/.prompt ]] && source $HOME/.prompt
-[[ -s /etc/bash_completion ]] && source /etc/bash_completion
-[[ -x `which brew 2> /dev/null` ]] && [[ -s `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
-[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
-[[ -x $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
 export EDITOR="vim"
-[[ -x `which vimpager 2> /dev/null` ]] && export PAGER="vimpager"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -30,6 +18,21 @@ HISTFILESIZE=2000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+if [[ -z "$TMUX" ]] && [[ -x `which tmux 2> /dev/null` ]]; then
+  tmux has-session -t lori || tmux new-session -d -s lori
+  tmux attach -t lori
+  exit
+fi
+
+[[ -s $HOME/.prompt ]] && source $HOME/.prompt
+[[ -s /etc/bash_completion ]] && source /etc/bash_completion
+[[ -x `which brew 2> /dev/null` ]] && [[ -s `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+[[ -x `which vimpager 2> /dev/null` ]] && export PAGER="vimpager"
+
 
 # Export the LS_COLORS variable if we have dircolors
 if [[ -x `which dircolors 2> /dev/null` ]]; then

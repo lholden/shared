@@ -15,13 +15,17 @@ for command in "${commands[@]}"; do
     lo_ip="::1"
     echo "Configuring rules for IPv6"
     echo "  Verify with: ip6tables -L -v -n"
-    echo "  Save with: service ip6tables save"
+    echo "  Save with:"
+    echo "    (Fedora) service ip6tables save"
+    echo "    (Ubuntu) service iptables-persistent save"
   else
     icmp="icmp"
     lo_ip="127.0.0.1"
     echo "Configuring rules for IPv4"
     echo "  Verify with: iptables -L -v -n"
-    echo "  Save with:   service iptables save"
+    echo "  Save with:"
+    echo "    (Fedora) service iptables save"
+    echo "    (Ubuntu) service iptables-persistent save"
   fi
   echo ""
 

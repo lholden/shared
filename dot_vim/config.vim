@@ -31,7 +31,7 @@ set shortmess=atI
 set visualbell
 set wrap
 set linebreak
-set breakat=\ |@-+;,./?^I
+"set breakat=\ |@-+;,./?^I
 set showbreak=~>\ 
 set cursorline
 set modeline

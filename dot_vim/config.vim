@@ -37,6 +37,10 @@ set modeline
 set modelines=10
 set backspace=indent,eol,start
 set autoread
+set ttymouse=xterm2
+set mouse=a
+set mousemodel=popup
+
 
 colorscheme jellybeans
 hi SpellBad term=reverse cterm=underline ctermbg=88 gui=underline guibg=#401010 guisp=Red

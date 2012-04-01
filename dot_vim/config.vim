@@ -69,3 +69,7 @@ let g:fuf_abbrevMap = {
       \ '^vim:' : [ $VIMHOME ],
       \ '^home:' : [ $HOME ],
       \}
+
+" SlimV
+let g:slimv_repl_syntax = 1
+let g:slimv_repl_split = 2

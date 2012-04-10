@@ -47,6 +47,7 @@ Bundle 'clones/vim-fuzzyfinder'
 Bundle 'vimwiki'
 Bundle 'tangledhelix/vim-octopress'
 Bundle 'syntax-highlighting-for-tintinttpp'
+Bundle 'jayed/slimv'
 
 if !isdirectory($VIMHOME . "/bundle/vim-fugitive/")
   BundleInstall

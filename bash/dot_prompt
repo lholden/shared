@@ -55,6 +55,6 @@ case $EUID in
   (*) color_by_id=$COLOR_USER ;;
 esac
 
-export PS1="( $color_by_id\u$COLOR_RESET@$COLOR_HOST\h$COLOR_RESET:$COLOR_PATH\$(prompt_path '\w')$COLOR_RESET$COLOR_EXTRAS\$(prompt_rvm)\$(prompt_git)\$(prompt_jobs \j)$COLOR_RESET )\n\$ "
+PS1="$COLOR_RESET( $color_by_id\u$COLOR_RESET@$COLOR_HOST\h$COLOR_RESET:$COLOR_PATH\$(prompt_path '\w')$COLOR_RESET$COLOR_EXTRAS\$(prompt_rvm)\$(prompt_git)\$(prompt_jobs \j)$COLOR_RESET )\n\$ "
 
 # vim: set filetype=sh :

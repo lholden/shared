@@ -39,6 +39,9 @@ fi
 
 [[ -s $HOME/.alias ]] && source $HOME/.alias
 
+
+# Build up the PATH
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+
 unset command_not_found_handle
 # vim: set filetype=sh :
-

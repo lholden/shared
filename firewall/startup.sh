@@ -66,7 +66,7 @@ for command in "${commands[@]}"; do
   $command -A INPUT -p ALL -i $iface -j inbound
 
   # Established connections
-  $command -A INPUT -p ALL -i $iface -m state --state ESTABLISHED,RELATED -j ACCEPT
+  $command -A INPUT -p ALL -i $iface -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
   ###
   # OUTPUT

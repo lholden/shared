@@ -51,6 +51,7 @@ Bundle 'slimv.vim'
 Bundle 'kana/vim-smartinput'
 Bundle 'Headlights' 
 Bundle 'gregsexton/gitv'
+Bundle 'vim-jp/cpp-vim'
 
 if !isdirectory($VIMHOME . "/bundle/vim-fugitive/")
   BundleInstall

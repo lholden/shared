@@ -7,7 +7,7 @@ $command -N bad_icmp_packets
 ###
 # Chain: bad_packets
 ###
-$command -A bad_packets -p ALL -m state --state INVALID -j DROP
+$command -A bad_packets -p ALL -m conntrack --ctstate INVALID -j DROP
 $command -A bad_packets -p tcp -j bad_tcp_packets
 $command -A bad_packets -p $icmp -j bad_icmp_packets
 $command -A bad_packets -p ALL -j RETURN
@@ -16,7 +16,7 @@ $command -A bad_packets -p ALL -j RETURN
 # Chain: bad_tcp_packets
 ###
 # New not syn
-$command -A bad_tcp_packets -p tcp ! --syn -m state --state NEW -j DROP
+$command -A bad_tcp_packets -p tcp ! --syn -m conntrack --ctstate NEW -j DROP
 
 # Stealth scan
 $command -A bad_tcp_packets -p tcp --tcp-flags ALL NONE -j DROP

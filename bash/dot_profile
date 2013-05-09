@@ -2,6 +2,9 @@
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
+if [ -f /etc/profile ]; then
+  . /etc/profile
+fi
 
 export CLICOLOR=1
 export LANG="en_US.UTF-8"
@@ -42,6 +45,7 @@ fi
 
 # Build up the PATH
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
 
 unset command_not_found_handle
 # vim: set filetype=sh :

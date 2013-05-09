@@ -19,6 +19,11 @@ $command -A inbound -p ALL -j RETURN
 # Chain: Blacklisted Inbound
 ###
 $command -A blacklisted_inbound -m pkttype --pkt-type broadcast -j DROP
+# Block one of googles CDNs to improve youtube performance
+#if [[ "$command" = "iptables" ]]; then
+#  $command -A blacklisted_inbound -s 173.194.55.0/24 -j REJECT
+#  $command -A blacklisted_inbound -s 206.111.0.0/16 -j REJECT
+#fi
 $command -A blacklisted_inbound -j RETURN
 
 ###

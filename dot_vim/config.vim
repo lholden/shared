@@ -1,32 +1,25 @@
+let $VIMHOME=expand('<sfile>:p:h')
 set nocompatible
-runtime vundle.vim
+
+"runtime vundle.vim
+runtime packages.vim
 runtime keybinds.vim
-
-syntax on
-
-filetype plugin indent on
-filetype plugin on
 
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 au BufRead,BufNewFile {*.tt,*.tin} set syntax=tt
 
-set autoindent
 set nowrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 set nohls
-set incsearch
 set ignorecase
 set smartcase
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.hg
-set wildmenu
-set laststatus=2
 set hidden
 set title
-set scrolloff=3
 set shortmess=atI
 set visualbell
 set wrap
@@ -36,8 +29,6 @@ set showbreak=~>\
 set cursorline
 set modeline
 set modelines=10
-set backspace=indent,eol,start
-set autoread
 set ttymouse=xterm2
 set mouse=a
 set mousemodel=popup
@@ -50,26 +41,16 @@ hi SpellRare term=reverse cterm=underline ctermbg=53 gui=underline guibg=#310041
 hi SpellLocal term=underline cterm=underline ctermbg=23 gui=underline guibg=#003020 guisp=Cyan
 highlight Cursor guifg=black guibg=grey
 
-" YankRing
-let g:yankring_history_file = '.yankring_history'
+""" Unite Options
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+let g:unite_source_history_yank_enable = 1
+let g:unite_enable_start_insert = 1
+let g:unite_enable_short_source_names = 1
+if executable('ack-grep')
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
-" vim-statline
-let g:statline_fugitive = 1
-
-" ctrlp
-let g:ctrlp_lazy_update = 100
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_height = 12
-
-" vimwiki
-let g:vimwiki_list = [{'path': $HOME.'/.wiki/', 'path_html': $HOME.'/.wiki_html/'}]
-
-" FuzzyFinder
-let g:fuf_abbrevMap = {
-      \ '^vim:' : [ $VIMHOME ],
-      \ '^home:' : [ $HOME ],
-      \}
-
-" SlimV
-let g:slimv_repl_syntax = 1
-let g:slimv_repl_split = 2
+""" Undotree Options
+let g:undotree_SetFocusWhenToggle=1

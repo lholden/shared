@@ -24,12 +24,12 @@ NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
 
 """ Languages
 NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 'Mizuchi/STL-Syntax'
 
 """ General
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'mbbill/undotree'
-"NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'vits/ZoomWin'
@@ -37,6 +37,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'talek/obvious-resize'
 
 """ Themes
 NeoBundle 'nanotech/jellybeans.vim'

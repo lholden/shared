@@ -54,3 +54,7 @@ endif
 
 """ Undotree Options
 let g:undotree_SetFocusWhenToggle=1
+
+""" Airline
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''

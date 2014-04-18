@@ -5,19 +5,37 @@ map <Leader>v "+gP
 cmap <C-v> <C-R>+
 
 """ Unite
-nnoremap <Leader>b :<C-u>Unite buffer<CR>
-nnoremap <Leader>o :<C-u>Unite file<CR>
-nnoremap <Leader>t :<C-u>Unite file_rec/async<CR>
-nnoremap <leader>p :<C-u>Unite history/yank<CR>
-nnoremap <leader>g :<C-u>Unite grep:.<CR>
+nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
+nnoremap <silent> <Leader>o :<C-u>Unite file<CR>
+nnoremap <silent> <Leader>t :<C-u>Unite file_rec/async<CR>
+nnoremap <silent> <leader>p :<C-u>Unite history/yank<CR>
+nnoremap <silent> <leader>g :<C-u>Unite grep:.<CR>
 
 """ Undotree
 nnoremap <leader>u :<C-u>:UndotreeToggle<CR>
 
-""" Unimpared
+""" Line movement (Unimpaired and etc)
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+nmap <A-Up> [e
+nmap <A-Down> ]e
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+vmap <A-Up> [egv
+vmap <A-Down> ]egv
+" Indent
+map <A-Right> >>
+map <A-Left> <<
+vmap <A-Right> >gv
+vmap <A-Left> <gv
+
+""" Viewports
+nnoremap <silent> <C-Up> :<C-u>wincmd k<CR>
+nnoremap <silent> <C-Down> :<C-u>wincmd j<CR>
+nnoremap <silent> <C-Right> :<C-u>wincmd l<CR>
+nnoremap <silent> <C-Left> :<C-u>wincmd h<CR>
+nnoremap <silent> <C-S-Up> :<C-u>ObviousResizeUp<CR>
+nnoremap <silent> <C-S-Down> :<C-u>ObviousResizeDown<CR>
+nnoremap <silent> <C-S-Left> :<C-u>ObviousResizeLeft<CR>
+nnoremap <silent> <C-S-Right> :<C-u>ObviousResizeRight<CR>
+nnoremap <silent> <C-=> :<C-u>wincmd =<CR>
+nnoremap <silent> <C-Backspace> :<C-u>ZoomWin<CR>
+nnoremap <silent> <C-w> :<C-u>bw<CR>

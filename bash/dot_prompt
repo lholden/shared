@@ -9,8 +9,8 @@ declare -r COLOR_HOST=""
 declare -r COLOR_RESET="\[\e[0m\]"
 
 function prompt_path {
-  declare path="$1"
-  declare prefix
+  local path="$1"
+  local prefix
 
   [[ "$path" =~ (~) ]] && prefix="~/"
 
@@ -24,7 +24,7 @@ function prompt_path {
 
 function prompt_git {
   [[ $(type -t __git_ps1) ]] || return
-  declare branch="$(__git_ps1 '%s')"
+  local branch="$(__git_ps1 '%s')"
   if [[ ! -z "$branch" ]]; then 
     echo "  [$branch]"
   fi
@@ -36,8 +36,8 @@ function prompt_rvm {
 }
 
 function prompt_jobs {
-  declare num_jobs=$1
-  declare jobs_str
+  local num_jobs=$1
+  local jobs_str
 
   case $num_jobs in
     (0) return ;;

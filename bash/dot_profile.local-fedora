@@ -1,0 +1,6 @@
+if [[ -z "`type -t __git_ps1`" ]]; then
+  declare GIT_PROMPT="$HOME/Projects/shared/bash/git-prompt.sh" 
+  if [[ -f $GIT_PROMPT ]]; then
+    source $GIT_PROMPT
+  fi
+fi

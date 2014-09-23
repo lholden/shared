@@ -18,5 +18,5 @@ if has("gui_running")
     set guifont=Menlo\ Regular:h12
   endif
 
-  set guifont=DejaVu\ Sans\ Mono\ 10
+  set guifont=DejaVu\ Sans\ Mono\ 11
 endif

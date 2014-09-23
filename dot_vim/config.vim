@@ -46,11 +46,6 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_start_insert = 1
 let g:unite_enable_short_source_names = 1
-if executable('ack-grep')
-  let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
-  let g:unite_source_grep_recursive_opt = ''
-endif
 
 """ Undotree Options
 let g:undotree_SetFocusWhenToggle=1

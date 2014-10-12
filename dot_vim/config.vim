@@ -41,8 +41,23 @@ hi SpellRare term=reverse cterm=underline ctermbg=53 gui=underline guibg=#310041
 hi SpellLocal term=underline cterm=underline ctermbg=23 gui=underline guibg=#003020 guisp=Cyan
 highlight Cursor guifg=black guibg=grey
 
+""" Disable the cursor moving back by one on exiting insert mode
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+
 """ Unite Options
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('file_rec,file_rec/async,file_rec/git,buffer,file_mru', 'matchers',
+  \ [
+  \ 'converter_relative_word',
+  \ 'matcher_project_ignore_files',
+  \ 'matcher_hide_hidden_files',
+  \ 'matcher_fuzzy',
+  \ ])
+call unite#custom#source('file_rec,file_rec/async,file_rec/git,buffer,file_mru', 'sorters',
+  \ [
+  \ 'sorter_rank',
+  \ ])
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_start_insert = 1
 let g:unite_enable_short_source_names = 1

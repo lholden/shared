@@ -5,10 +5,10 @@ map <Leader>v "+gP
 cmap <C-v> <C-R>+
 
 """ Unite
-nnoremap <silent> <Leader>b :<C-u>UniteWithProjectDir buffer<CR>
+nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
 nnoremap <silent> <Leader>o :<C-u>UniteWithProjectDir file<CR>
 nnoremap <silent> <Leader>t :<C-u>UniteWithProjectDir file_rec/async<CR>
-nnoremap <silent> <leader>p :<C-u>UniteWithProjectDir history/yank<CR>
+nnoremap <silent> <leader>p :<C-u>Unite history/yank<CR>
 nnoremap <silent> <leader>g :<C-u>UniteWithProjectDir grep:.<CR>
 
 """ Undotree
